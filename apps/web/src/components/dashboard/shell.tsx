@@ -93,7 +93,7 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
                 className="absolute inset-0 left-0 w-72 bg-[var(--bg-elevated)] shadow-glass-lg"
               >
                 <div className="flex items-center justify-between p-4">
-                  <Logo variant="primary" width={280} />
+                  <Logo variant="primary" width={350} />
                   <button
                     type="button"
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800"
@@ -111,52 +111,54 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
 
         {/* Main column */}
         <div className="flex-1 min-w-0">
-          {/* Topbar */}
+           {/* Topbar */}
            <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-[var(--border)] bg-[var(--bg-elevated)]/80 px-4 backdrop-blur-md lg:px-8">
-            <button
-              type="button"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800 lg:hidden"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Abrir menú"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
-
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-muted" />
-              <input
-                type="search"
-                placeholder={locale === 'es' ? 'Buscar cursos…' : 'Search courses…'}
-                className="h-9 w-full rounded-full border border-[var(--border)] bg-[var(--bg)] pl-9 pr-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-              />
-            </div>
-
-            <button
-              type="button"
-              aria-label="Notificaciones"
-              className="relative inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800"
-            >
-              <Bell className="h-5 w-5" />
-              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent-500" />
-            </button>
-            <ThemeToggle />
-
-            <div className="flex items-center gap-3">
-              <div className="hidden text-right sm:block">
-                <p className="text-xs font-medium text-fg leading-tight">{profile.full_name}</p>
-                <p className="text-[11px] text-fg-muted">{profile.email}</p>
-              </div>
-              <button
-                type="button"
-                onClick={onSignOut}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-700 to-brand-900 text-sm font-semibold text-white"
-                title={initials}
-                aria-label="Cerrar sesión"
-              >
-                <span aria-hidden>{initials}</span>
-              </button>
-            </div>
-          </header>
+             <button
+               type="button"
+               className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800 lg:hidden"
+               onClick={() => setMobileOpen(true)}
+               aria-label="Abrir menú"
+             >
+               <Menu className="h-5 w-5" />
+             </button>
+ 
+             <div className="relative flex-1 max-w-md">
+               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-muted" />
+               <input
+                 type="search"
+                 placeholder={locale === 'es' ? 'Buscar cursos…' : 'Search courses…'}
+                 className="h-9 w-full rounded-full border border-[var(--border)] bg-[var(--bg)] pl-9 pr-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+               />
+             </div>
+ 
+             <div className="flex items-center gap-3 ml-auto">
+               <button
+                 type="button"
+                 aria-label="Notificaciones"
+                 className="relative inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800"
+               >
+                 <Bell className="h-5 w-5" />
+                 <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent-500" />
+               </button>
+               <ThemeToggle />
+ 
+               <div className="flex items-center gap-3">
+                 <div className="hidden text-right sm:block">
+                   <p className="text-xs font-medium text-fg leading-tight">{profile.full_name}</p>
+                   <p className="text-[11px] text-fg-muted">{profile.email}</p>
+                 </div>
+                 <button
+                   type="button"
+                   onClick={onSignOut}
+                   className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-700 to-brand-900 text-sm font-semibold text-white"
+                   title={initials}
+                   aria-label="Cerrar sesión"
+                 >
+                   <span aria-hidden>{initials}</span>
+                 </button>
+               </div>
+             </div>
+           </header>
 
           {/* Content */}
           <div className="px-4 py-8 lg:px-8 lg:py-10">{children}</div>
