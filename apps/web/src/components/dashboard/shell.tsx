@@ -63,10 +63,10 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
   };
 
   return (
-    <div className="min-h-[calc(100dvh-5rem)] bg-[var(--bg)]">
+    <div className="min-h-dvh bg-[var(--bg)]">
       <div className="flex">
         {/* Sidebar (desktop) */}
-        <aside className="sticky top-24 hidden h-[calc(100dvh-6rem)] w-64 shrink-0 border-r border-[var(--border)] bg-[var(--bg-elevated)] lg:block">
+        <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-[var(--border)] bg-[var(--bg-elevated)] lg:block">
           <SidebarContent nav={nav} isActive={isActive} locale={locale} />
         </aside>
 
@@ -90,7 +90,7 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
                 animate={{ x: 0 }}
                 exit={{ x: -300 }}
                 transition={{ type: 'spring', stiffness: 280, damping: 30 }}
-                className="absolute inset-y-0 left-0 w-72 bg-[var(--bg-elevated)] shadow-glass-lg"
+                className="absolute inset-0 left-0 w-72 bg-[var(--bg-elevated)] shadow-glass-lg"
               >
                 <div className="flex items-center justify-between p-4">
                   <Logo variant="primary" width={280} />
@@ -112,7 +112,7 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
         {/* Main column */}
         <div className="flex-1 min-w-0">
           {/* Topbar */}
-          <header className="sticky top-24 z-30 flex h-14 items-center gap-3 border-b border-[var(--border)] bg-[var(--bg-elevated)]/80 px-4 backdrop-blur-md lg:px-8">
+           <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-[var(--border)] bg-[var(--bg-elevated)]/80 px-4 backdrop-blur-md lg:px-8">
             <button
               type="button"
               className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800 lg:hidden"
