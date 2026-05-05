@@ -28,7 +28,7 @@ export function BooksSpotlight() {
 
             <blockquote className="mt-10 border-l-4 border-accent-400 pl-6">
               <p className="font-display text-2xl italic leading-snug text-fg lg:text-3xl">
-                "Tener este manual a mano me dio la confianza para hacer el proceso por mi cuenta."
+                &ldquo;Tener este manual a mano me dio la confianza para hacer el proceso por mi cuenta.&rdquo;
               </p>
               <footer className="mt-4 text-sm text-fg-muted">
                 — Carolina M., lectora del manual de naturalización

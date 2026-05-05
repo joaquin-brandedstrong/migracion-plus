@@ -30,15 +30,15 @@ export async function getSupabaseServerClient() {
  * Service-role client for use in webhooks, cron jobs, and seed scripts only.
  * Bypasses RLS — never expose to the browser.
  */
-export function getSupabaseServiceRoleClient() {
+export async function getSupabaseServiceRoleClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !serviceKey) {
     throw new Error('SUPABASE_SERVICE_ROLE_KEY not set. Required for server-side admin operations.');
   }
-  // Use the @supabase/supabase-js client directly here (no cookies needed).
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { createClient } = require('@supabase/supabase-js');
+  // Use dynamic import to avoid bundling @supabase/supabase-js in client builds.
+  // This function is only used in server contexts (webhooks, cron, seed scripts).
+  const { createClient } = await import('@supabase/supabase-js');
   return createClient(url, serviceKey, {
     db: { schema: SCHEMA },
     auth: { persistSession: false, autoRefreshToken: false },

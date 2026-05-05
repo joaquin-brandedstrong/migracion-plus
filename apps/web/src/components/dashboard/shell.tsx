@@ -16,7 +16,6 @@ import {
   Settings,
   Sparkles,
   X,
-  LogOut,
 } from 'lucide-react';
 import { Button, ThemeToggle } from '@migracionplus/ui';
 import { Logo } from '@/components/logo';
@@ -43,7 +42,7 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
     { href: `/${locale}/dashboard/configuracion`, icon: Settings, label: t('nav.settings') },
   ];
 
-  const isActive = (item: (typeof nav)[number]) =>
+  const isActive = (item: { href: string; exact?: boolean }) =>
     item.exact ? pathname === item.href : pathname.startsWith(item.href);
 
   const initials = profile.full_name
@@ -80,7 +79,12 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 lg:hidden"
             >
-              <div className="absolute inset-0 bg-ink-950/40" onClick={() => setMobileOpen(false)} />
+                <button
+                  type="button"
+                  className="absolute inset-0 bg-ink-950/40"
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Cerrar menú"
+                />
               <motion.aside
                 initial={{ x: -300 }}
                 animate={{ x: 0 }}

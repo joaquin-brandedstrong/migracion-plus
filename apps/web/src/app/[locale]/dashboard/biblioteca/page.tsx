@@ -49,9 +49,9 @@ export default async function DashboardBiblioteca({
           {purchases.map((p) => (
             <GlassCard key={p.book.slug} className="overflow-hidden">
               <div className="relative aspect-[3/4] bg-[var(--bg-elevated)]">
-                {p.book.coverImage ? (
+                {p.book.cover ? (
                   <Image
-                    src={p.book.coverImage}
+                    src={p.book.cover}
                     alt={p.book.title[lang]}
                     fill
                     className="object-cover"

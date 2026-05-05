@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { Button, GlassCard } from '@migracionplus/ui';
-import { Award, Download, Share2 } from 'lucide-react';
+import { Award, BookOpen, Download, Share2 } from 'lucide-react';
 import { demoCertificates } from '@/data/dashboard-seed';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
 

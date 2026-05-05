@@ -1,12 +1,11 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Badge, Button, GlassCard } from '@migracionplus/ui';
+import { Button, GlassCard } from '@migracionplus/ui';
 import {
   Award,
   BookOpen,
   Clock,
   Flame,
-  PlayCircle,
   Sparkles,
   TrendingUp,
 } from 'lucide-react';
@@ -15,7 +14,6 @@ import {
   demoActivity,
   demoCertificates,
   demoEnrollments,
-  slugify,
 } from '@/data/dashboard-seed';
 import { courses } from '@/data/seed';
 import { CourseCard } from '@/components/course-card';

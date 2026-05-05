@@ -13,7 +13,6 @@ import { formatDuration, formatPrice } from '@/lib/utils';
 
 export function CourseDetail({ course }: { course: CourseSeed }) {
   const t = useTranslations('courseDetail');
-  const tCommon = useTranslations('common');
   const locale = useLocale() as 'es' | 'en';
 
   const totalLessons = course.modules.reduce((sum, m) => sum + m.lessons.length, 0);

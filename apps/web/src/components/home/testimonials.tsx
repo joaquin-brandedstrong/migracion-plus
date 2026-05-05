@@ -27,7 +27,7 @@ export function Testimonials() {
           {reel.map((testimonial, i) => (
             <GlassCard key={`${testimonial.name}-${i}`} className="w-80 shrink-0 p-6 lg:w-96">
               <Quote className="h-6 w-6 text-accent-500" />
-              <p className="mt-4 text-base leading-relaxed text-fg">"{testimonial.quote[locale]}"</p>
+                <p className="mt-4 text-base leading-relaxed text-fg">&ldquo;{testimonial.quote[locale]}&rdquo;</p>
               <div className="mt-6 flex items-center gap-3">
                 <div className="relative h-10 w-10 overflow-hidden rounded-full bg-ink-100">
                   <Image src={testimonial.avatar} alt={testimonial.name} fill sizes="40px" className="object-cover" />
