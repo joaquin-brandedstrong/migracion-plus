@@ -21,7 +21,7 @@ const SOURCES = {
  */
 export function Logo({ variant = 'primary', className, width, priority = false }: LogoProps) {
   const src = SOURCES[variant];
-  const w = width ?? (variant === 'primary' ? 220 : 280);
+  const w = width ?? (variant === 'primary' ? 300 : 400);
   const h = Math.round((w * src.h) / src.w);
 
   return (
