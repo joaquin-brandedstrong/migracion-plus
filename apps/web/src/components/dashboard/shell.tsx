@@ -93,7 +93,7 @@ export function DashboardShell({ locale, profile, children }: ShellProps) {
                 className="absolute inset-y-0 left-0 w-72 bg-[var(--bg-elevated)] shadow-glass-lg"
               >
                 <div className="flex items-center justify-between p-4">
-                  <Logo variant="primary" width={140} />
+                  <Logo variant="primary" width={200} />
                   <button
                     type="button"
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800"
