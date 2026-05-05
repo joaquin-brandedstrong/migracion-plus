@@ -1,0 +1,28 @@
+{
+  "name": "@migracionplus/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx scripts/seed.ts",
+    "migrate": "tsx scripts/apply-migrations.ts",
+    "reset": "echo 'Run reset via Supabase CLI: supabase db reset'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  },
+  "devDependencies": {
+    "@migracionplus/config": "*",
+    "@types/node": "^20.14.0",
+    "@types/pg": "^8.20.0",
+    "pg": "^8.20.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.5.4"
+  }
+}

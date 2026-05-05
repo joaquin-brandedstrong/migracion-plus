@@ -1,0 +1,449 @@
+{
+  "common": {
+    "siteName": "Migración Plus Academy",
+    "tagline": "Migration education for everyone",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "search": "Search",
+    "viewAll": "View all",
+    "viewMore": "View more",
+    "learnMore": "Learn more",
+    "getStarted": "Get started",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "books": "Books",
+    "about": "About us",
+    "blog": "Blog",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "admin": "Admin"
+  },
+  "home": {
+    "heroEyebrow": "Bilingual learning platform",
+    "heroTitle": "Learn how to file immigration forms with confidence",
+    "heroSubtitle": "Courses, books, and a 24/7 AI assistant to guide you through every step of the U.S. immigration process.",
+    "heroCtaPrimary": "Browse courses",
+    "heroCtaSecondary": "Talk to AI advisor",
+    "trustStrip": "Trusted by thousands of families in the U.S.",
+    "valueProps": {
+      "title": "Why choose us",
+      "subtitle": "Four pillars that define our educational approach",
+      "advisory": {
+        "title": "Specialized guidance",
+        "body": "Personalized support from experts in immigration processes."
+      },
+      "experience": {
+        "title": "Over 15 years of experience",
+        "body": "We have guided thousands of families on their immigration journey."
+      },
+      "service": {
+        "title": "End-to-end service",
+        "body": "From your first consultation to your certificate, all in one place."
+      },
+      "commitment": {
+        "title": "Real commitment",
+        "body": "Clear information, no false promises, always within the legal framework."
+      }
+    },
+    "featuredCourses": {
+      "title": "Featured courses",
+      "subtitle": "Start with the most popular ones in our library"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "Three steps to start learning today",
+      "step1": {
+        "title": "Choose your course",
+        "body": "Explore our catalog and pick the course that fits your needs."
+      },
+      "step2": {
+        "title": "Learn at your own pace",
+        "body": "Access videos, resources, and the AI assistant whenever you want, from any device."
+      },
+      "step3": {
+        "title": "Earn your certificate",
+        "body": "Complete the modules and download your verifiable certificate."
+      }
+    },
+    "booksSpotlight": {
+      "title": "Recommended reading",
+      "subtitle": "Books and guides written by our experts",
+      "buyDigital": "Buy digital",
+      "buyAmazon": "Buy on Amazon"
+    },
+    "testimonials": {
+      "title": "What our students say",
+      "subtitle": "Real stories from families who trusted us"
+    },
+    "aiTeaser": {
+      "eyebrow": "AI assistant",
+      "title": "Get instant answers",
+      "body": "Plus, our AI assistant, knows the content of every course and helps you understand complex topics in your language.",
+      "cta": "Try the AI assistant"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "We answer the most common questions"
+    },
+    "finalCta": {
+      "title": "Start your legal journey today",
+      "body": "Get news, free resources, and discounts in your inbox.",
+      "placeholder": "Your email address",
+      "submit": "Subscribe",
+      "consent": "I agree to receive communications by email and SMS. I can unsubscribe at any time."
+    },
+    "footer": {
+      "tagline": "Migration education for everyone.",
+      "courses": "Courses",
+      "resources": "Resources",
+      "legal": "Legal",
+      "company": "Company",
+      "newsletter": "Get our newsletter",
+      "rights": "All rights reserved"
+    }
+  },
+  "courses": {
+    "title": "Course catalog",
+    "subtitle": "Find the right course for your situation",
+    "filters": {
+      "category": "Category",
+      "level": "Level",
+      "language": "Language",
+      "price": "Price",
+      "rating": "Minimum rating",
+      "sort": "Sort by",
+      "clear": "Clear filters"
+    },
+    "sort": {
+      "popular": "Most popular",
+      "newest": "Newest",
+      "rating": "Top rated",
+      "priceAsc": "Price: low to high",
+      "priceDesc": "Price: high to low"
+    },
+    "level": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "card": {
+      "minutes": "min",
+      "lessons": "lessons",
+      "preview": "Preview",
+      "enroll": "Enroll"
+    },
+    "empty": {
+      "title": "No courses found",
+      "body": "Adjust your filters to see more results."
+    }
+  },
+  "courseDetail": {
+    "trailer": "Watch trailer",
+    "buyNow": "Buy now",
+    "subscribe": "Subscribe",
+    "lifetimeAccess": "Lifetime access",
+    "certificate": "Certificate of completion",
+    "downloadable": "Downloadable resources",
+    "mobile": "Mobile access",
+    "tabs": {
+      "overview": "Overview",
+      "curriculum": "Curriculum",
+      "instructor": "Instructor",
+      "reviews": "Reviews"
+    },
+    "whatYouWillLearn": "What you will learn",
+    "requirements": "Requirements",
+    "audience": "Who this course is for",
+    "alsoLike": "You may also like"
+  },
+  "books": {
+    "title": "Bookstore",
+    "subtitle": "Guides and resources on immigration topics",
+    "filters": {
+      "format": "Format",
+      "topic": "Topic"
+    },
+    "format": {
+      "physical": "Physical",
+      "digital": "Digital",
+      "both": "Physical + Digital"
+    },
+    "buyDigital": "Buy digital",
+    "buyAmazon": "Buy on Amazon",
+    "buyPhysical": "Buy physical book"
+  },
+  "about": {
+    "title": "About Migración Plus",
+    "mission": "Our mission",
+    "vision": "Our vision",
+    "history": "Our history",
+    "team": "Our team",
+    "disclaimer": "Migración Plus provides consulting and education services on completing immigration forms. We do not provide legal advice or representation in immigration court. Migración Plus is not a law firm and does not provide legal advice."
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Tell us how we can help",
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "topic": "Topic",
+      "message": "Message",
+      "submit": "Send message",
+      "success": "Message sent. We'll be in touch soon.",
+      "error": "We couldn't send your message. Please try again.",
+      "topics": {
+        "courses": "Course information",
+        "books": "Book information",
+        "support": "Technical support",
+        "partnership": "Partnerships",
+        "other": "Other"
+      }
+    },
+    "info": {
+      "email": "Email",
+      "phone": "Phone",
+      "hours": "Office hours"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles, guides, and news about immigration",
+    "readTime": "{minutes} min read",
+    "by": "by",
+    "tableOfContents": "Table of contents",
+    "relatedPosts": "Related posts",
+    "share": "Share"
+  },
+  "dashboard": {
+    "nav": {
+      "home": "Home",
+      "courses": "My courses",
+      "library": "My library",
+      "certificates": "Certificates",
+      "assistant": "AI assistant",
+      "settings": "Settings"
+    },
+    "home": {
+      "greeting": "Hi, {name}",
+      "subtitle": "Here's your learning progress",
+      "stats": {
+        "inProgress": "Courses in progress",
+        "completed": "Courses completed",
+        "hoursStudied": "Hours studied",
+        "certificates": "Certificates"
+      },
+      "continueLearning": "Continue learning",
+      "continueResume": "Resume",
+      "recommendedTitle": "Recommended for you",
+      "recommendedSubtitle": "Courses chosen for your activity",
+      "activityTitle": "Recent activity",
+      "viewAll": "View all"
+    },
+    "courses": {
+      "title": "My courses",
+      "subtitle": "Everything you've enrolled in",
+      "inProgress": "In progress",
+      "completed": "Completed",
+      "lessonsCompleted": "{done} of {total} lessons",
+      "progress": "Progress",
+      "continue": "Continue",
+      "review": "Review",
+      "completedOn": "Completed on {date}",
+      "viewCertificate": "View certificate",
+      "emptyTitle": "No courses yet",
+      "emptySubtitle": "Browse the catalog and pick your first course to start.",
+      "browseCourses": "Browse catalog",
+      "empty": {
+        "title": "No courses yet",
+        "body": "Browse the catalog and pick your first course to start.",
+        "cta": "Browse catalog"
+      }
+    },
+    "library": {
+      "title": "My library",
+      "subtitle": "Your digital books and purchases",
+      "download": "Download",
+      "downloads": "{n} downloads",
+      "downloaded": "Downloaded {count} times",
+      "purchasedAt": "Purchased on {date}",
+      "browseBooks": "Browse books",
+      "emptyTitle": "Your library is empty",
+      "emptySubtitle": "Buy a digital book to see it here.",
+      "empty": {
+        "title": "Your library is empty",
+        "body": "Buy a digital book to see it here.",
+        "cta": "Browse store"
+      }
+    },
+    "certificates": {
+      "title": "My certificates",
+      "subtitle": "Achievements you can share",
+      "issuedOn": "Issued on {date}",
+      "credential": "Credential ID",
+      "download": "Download",
+      "share": "Share",
+      "viewCourse": "View course",
+      "browseCourses": "Browse courses",
+      "emptyTitle": "No certificates yet",
+      "emptySubtitle": "Complete a course to earn your first certificate.",
+      "downloadPdf": "Download PDF",
+      "shareLinkedin": "Share on LinkedIn",
+      "verify": "Verify",
+      "empty": {
+        "title": "No certificates yet",
+        "body": "Complete a course to earn your first certificate.",
+        "cta": "View my courses"
+      }
+    },
+    "assistant": {
+      "title": "Plus · AI Assistant",
+      "subtitle": "Your study companion, 24/7",
+      "comingSoon": "The conversational assistant will connect to the AI model when you configure your OpenAI key."
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Personalize your experience",
+      "tabs": {
+        "profile": "Profile",
+        "account": "Account",
+        "notifications": "Notifications",
+        "language": "Language",
+        "privacy": "Privacy",
+        "billing": "Billing"
+      },
+      "profile": {
+        "fullName": "Full name",
+        "bio": "Bio",
+        "phone": "Phone",
+        "save": "Save changes",
+        "saved": "Changes saved",
+        "avatar": "Profile picture",
+        "uploadAvatar": "Change picture"
+      },
+      "account": {
+        "email": "Email",
+        "changePassword": "Change password",
+        "deleteAccount": "Delete account",
+        "deleteWarning": "This action is permanent and will erase all your data."
+      },
+      "notifications": {
+        "emailUpdates": "Email updates",
+        "emailUpdatesBody": "News, launches, and tips.",
+        "smsReminders": "SMS reminders",
+        "smsRemindersBody": "Reminders about your courses. Reply STOP to unsubscribe.",
+        "courseProgress": "Course progress",
+        "courseProgressBody": "Reminders when you've been away from a course."
+      },
+      "language": {
+        "preferred": "Preferred language",
+        "preferredBody": "Language used for email and SMS."
+      },
+      "privacy": {
+        "publicProfile": "Public profile",
+        "publicProfileBody": "Let other students see your name.",
+        "marketingOptIn": "Marketing communications",
+        "marketingOptInBody": "Get offers and news by email."
+      },
+      "billing": {
+        "plan": "Current plan",
+        "manage": "Manage subscription",
+        "history": "Payment history",
+        "noHistory": "No payments recorded yet.",
+        "downloadInvoice": "Download invoice"
+      }
+    },
+    "lesson": {
+      "tabs": {
+        "description": "Description",
+        "resources": "Resources",
+        "questions": "Questions",
+        "notes": "Notes",
+        "transcript": "Transcript"
+      },
+      "markComplete": "Mark as complete",
+      "markedComplete": "Lesson completed",
+      "previousLesson": "Previous lesson",
+      "nextLesson": "Next lesson",
+      "askPlus": "Ask Plus",
+      "yourNotes": "Your notes",
+      "notesPlaceholder": "Write your notes…",
+      "notesAutosaved": "Autosaved",
+      "transcriptUnavailable": "Transcript not yet available for this lesson.",
+      "resourcesEmpty": "This lesson has no downloadable resources."
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Remember me",
+      "forgot": "Forgot your password?",
+      "submit": "Sign in",
+      "google": "Continue with Google",
+      "magicLink": "Send magic link",
+      "noAccount": "No account yet?",
+      "createOne": "Create one"
+    },
+    "signUp": {
+      "title": "Create your account",
+      "subtitle": "Begin your journey with Migración Plus",
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "terms": "I accept the terms and privacy policy",
+      "marketing": "I want to receive news by email",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "recover": {
+      "title": "Recover your account",
+      "subtitle": "We'll email you a link to reset your password",
+      "email": "Email",
+      "submit": "Send link",
+      "back": "Back to sign in",
+      "success": "If the email exists, you'll receive a link in minutes."
+    },
+    "verify": {
+      "title": "Verify your email",
+      "subtitle": "We sent you a verification link.",
+      "resend": "Resend email"
+    }
+  },
+  "legal": {
+    "draftBanner": "Pending client legal review.",
+    "terms": "Terms and conditions",
+    "privacy": "Privacy policy",
+    "policies": "Policies",
+    "notice": "Legal notice"
+  },
+  "errors": {
+    "required": "This field is required",
+    "email": "Enter a valid email",
+    "minLength": "Minimum {min} characters",
+    "passwordMatch": "Passwords don't match",
+    "generic": "Something went wrong. Please try again.",
+    "notFound": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or was moved.",
+    "goHome": "Go home"
+  }
+}

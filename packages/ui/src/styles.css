@@ -1,0 +1,29 @@
+/* Re-exportable global tokens for any app consuming @migracionplus/ui.
+ * Apps import this once at the top of their globals.css.
+ */
+
+@layer base {
+  :root {
+    --bg: #f8fafc;
+    --bg-elevated: #ffffff;
+    --fg: #0f172a;
+    --fg-muted: #475569;
+    --border: #e2e8f0;
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.7);
+    --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.08);
+    --noise-opacity: 0.025;
+  }
+
+  [data-theme='dark'] {
+    --bg: #020617;
+    --bg-elevated: #0f172a;
+    --fg: #f8fafc;
+    --fg-muted: #94a3b8;
+    --border: #1e293b;
+    --glass-bg: rgba(15, 23, 42, 0.55);
+    --glass-border: rgba(148, 163, 184, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    --noise-opacity: 0.04;
+  }
+}

@@ -1,0 +1,449 @@
+{
+  "common": {
+    "siteName": "Migración Plus Academy",
+    "tagline": "Educación migratoria al alcance de todos",
+    "loading": "Cargando…",
+    "error": "Algo salió mal",
+    "retry": "Reintentar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "back": "Atrás",
+    "search": "Buscar",
+    "viewAll": "Ver todos",
+    "viewMore": "Ver más",
+    "learnMore": "Aprende más",
+    "getStarted": "Empezar",
+    "signIn": "Iniciar sesión",
+    "signUp": "Crear cuenta",
+    "signOut": "Cerrar sesión",
+    "language": "Idioma",
+    "theme": "Tema",
+    "dark": "Oscuro",
+    "light": "Claro",
+    "system": "Sistema"
+  },
+  "nav": {
+    "home": "Inicio",
+    "courses": "Cursos",
+    "books": "Libros",
+    "about": "Sobre nosotros",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "dashboard": "Mi panel",
+    "admin": "Administración"
+  },
+  "home": {
+    "heroEyebrow": "Plataforma educativa bilingüe",
+    "heroTitle": "Aprende a llenar formularios migratorios con confianza",
+    "heroSubtitle": "Cursos, libros y un asistente IA disponible 24/7 para guiarte en cada paso del proceso migratorio en EE.UU.",
+    "heroCtaPrimary": "Ver cursos",
+    "heroCtaSecondary": "Hablar con asesor IA",
+    "trustStrip": "Confiado por miles de familias en EE.UU.",
+    "valueProps": {
+      "title": "Por qué elegirnos",
+      "subtitle": "Cuatro pilares que definen nuestra propuesta educativa",
+      "advisory": {
+        "title": "Asesoría especializada",
+        "body": "Acompañamiento personalizado de expertos en procesos migratorios."
+      },
+      "experience": {
+        "title": "Más de 15 años de experiencia",
+        "body": "Hemos guiado a miles de familias en su camino migratorio."
+      },
+      "service": {
+        "title": "Servicio integral",
+        "body": "De la primera consulta hasta tu certificado, todo en un solo lugar."
+      },
+      "commitment": {
+        "title": "Compromiso real",
+        "body": "Información clara, sin promesas falsas y siempre dentro del marco legal."
+      }
+    },
+    "featuredCourses": {
+      "title": "Cursos destacados",
+      "subtitle": "Empieza por los más populares de nuestra biblioteca"
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "subtitle": "Tres pasos para empezar a aprender hoy",
+      "step1": {
+        "title": "Elige tu curso",
+        "body": "Explora nuestro catálogo y selecciona el curso que se ajusta a tus necesidades."
+      },
+      "step2": {
+        "title": "Aprende a tu ritmo",
+        "body": "Accede a videos, recursos y al asistente IA cuando quieras, desde cualquier dispositivo."
+      },
+      "step3": {
+        "title": "Obtén tu certificado",
+        "body": "Completa los módulos y descarga tu certificado verificable."
+      }
+    },
+    "booksSpotlight": {
+      "title": "Lecturas recomendadas",
+      "subtitle": "Libros y guías escritas por nuestros expertos",
+      "buyDigital": "Comprar digital",
+      "buyAmazon": "Comprar en Amazon"
+    },
+    "testimonials": {
+      "title": "Lo que dicen nuestros estudiantes",
+      "subtitle": "Historias reales de familias que confiaron en nosotros"
+    },
+    "aiTeaser": {
+      "eyebrow": "Asistente IA",
+      "title": "Resuelve tus dudas al instante",
+      "body": "Plus, nuestro asistente IA, conoce el contenido de cada curso y te ayuda a entender los temas más complejos en tu idioma.",
+      "cta": "Probar asistente IA"
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "subtitle": "Resolvemos las dudas más comunes"
+    },
+    "finalCta": {
+      "title": "Empieza tu camino legal hoy",
+      "body": "Recibe novedades, recursos gratuitos y descuentos en tu correo.",
+      "placeholder": "Tu correo electrónico",
+      "submit": "Suscribirme",
+      "consent": "Acepto recibir comunicaciones por correo y SMS. Puedo darme de baja en cualquier momento."
+    },
+    "footer": {
+      "tagline": "Educación migratoria al alcance de todos.",
+      "courses": "Cursos",
+      "resources": "Recursos",
+      "legal": "Legal",
+      "company": "Compañía",
+      "newsletter": "Recibe nuestro boletín",
+      "rights": "Todos los derechos reservados"
+    }
+  },
+  "courses": {
+    "title": "Catálogo de cursos",
+    "subtitle": "Encuentra el curso ideal para tu situación",
+    "filters": {
+      "category": "Categoría",
+      "level": "Nivel",
+      "language": "Idioma",
+      "price": "Precio",
+      "rating": "Valoración mínima",
+      "sort": "Ordenar",
+      "clear": "Limpiar filtros"
+    },
+    "sort": {
+      "popular": "Más populares",
+      "newest": "Más recientes",
+      "rating": "Mejor valorados",
+      "priceAsc": "Precio: menor a mayor",
+      "priceDesc": "Precio: mayor a menor"
+    },
+    "level": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado"
+    },
+    "card": {
+      "minutes": "min",
+      "lessons": "lecciones",
+      "preview": "Vista previa",
+      "enroll": "Inscribirse"
+    },
+    "empty": {
+      "title": "No encontramos cursos",
+      "body": "Ajusta tus filtros para ver más resultados."
+    }
+  },
+  "courseDetail": {
+    "trailer": "Ver trailer",
+    "buyNow": "Comprar ahora",
+    "subscribe": "Suscribirse",
+    "lifetimeAccess": "Acceso de por vida",
+    "certificate": "Certificado al completar",
+    "downloadable": "Recursos descargables",
+    "mobile": "Acceso móvil",
+    "tabs": {
+      "overview": "Descripción",
+      "curriculum": "Currículum",
+      "instructor": "Instructor",
+      "reviews": "Reseñas"
+    },
+    "whatYouWillLearn": "Qué aprenderás",
+    "requirements": "Requisitos",
+    "audience": "A quién va dirigido",
+    "alsoLike": "También te puede interesar"
+  },
+  "books": {
+    "title": "Tienda de libros",
+    "subtitle": "Guías y recursos sobre temas migratorios",
+    "filters": {
+      "format": "Formato",
+      "topic": "Tema"
+    },
+    "format": {
+      "physical": "Físico",
+      "digital": "Digital",
+      "both": "Físico + Digital"
+    },
+    "buyDigital": "Comprar digital",
+    "buyAmazon": "Comprar en Amazon",
+    "buyPhysical": "Comprar libro físico"
+  },
+  "about": {
+    "title": "Sobre Migración Plus",
+    "mission": "Nuestra misión",
+    "vision": "Nuestra visión",
+    "history": "Nuestra historia",
+    "team": "Nuestro equipo",
+    "disclaimer": "Migración Plus brinda servicios de consultoría y educación en el llenado de formularios migratorios. No brindamos asesoría legal ni representación en la corte de inmigración. Migración Plus is not a law firm and does not provide legal advice."
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Cuéntanos cómo podemos ayudarte",
+    "form": {
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "topic": "Tema",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje",
+      "success": "Mensaje enviado. Te contactaremos pronto.",
+      "error": "No pudimos enviar tu mensaje. Inténtalo de nuevo.",
+      "topics": {
+        "courses": "Información sobre cursos",
+        "books": "Información sobre libros",
+        "support": "Soporte técnico",
+        "partnership": "Alianzas",
+        "other": "Otro"
+      }
+    },
+    "info": {
+      "email": "Correo",
+      "phone": "Teléfono",
+      "hours": "Horario de atención"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artículos, guías y novedades sobre migración",
+    "readTime": "{minutes} min de lectura",
+    "by": "por",
+    "tableOfContents": "Tabla de contenidos",
+    "relatedPosts": "Artículos relacionados",
+    "share": "Compartir"
+  },
+  "dashboard": {
+    "nav": {
+      "home": "Inicio",
+      "courses": "Mis cursos",
+      "library": "Mi biblioteca",
+      "certificates": "Certificados",
+      "assistant": "Asistente IA",
+      "settings": "Configuración"
+    },
+    "home": {
+      "greeting": "Hola, {name}",
+      "subtitle": "Aquí está tu progreso de aprendizaje",
+      "stats": {
+        "inProgress": "Cursos en progreso",
+        "completed": "Cursos completados",
+        "hoursStudied": "Horas estudiadas",
+        "certificates": "Certificados"
+      },
+      "continueLearning": "Continúa aprendiendo",
+      "continueResume": "Reanudar",
+      "recommendedTitle": "Recomendado para ti",
+      "recommendedSubtitle": "Cursos seleccionados según tu actividad",
+      "activityTitle": "Actividad reciente",
+      "viewAll": "Ver todo"
+    },
+    "courses": {
+      "title": "Mis cursos",
+      "subtitle": "Todo lo que has inscrito en un solo lugar",
+      "inProgress": "En progreso",
+      "completed": "Completados",
+      "lessonsCompleted": "{done} de {total} lecciones",
+      "progress": "Progreso",
+      "continue": "Continuar",
+      "review": "Repasar",
+      "completedOn": "Completado el {date}",
+      "viewCertificate": "Ver certificado",
+      "emptyTitle": "Aún no tienes cursos inscritos",
+      "emptySubtitle": "Explora el catálogo y elige tu primer curso para empezar.",
+      "browseCourses": "Ver catálogo",
+      "empty": {
+        "title": "Aún no tienes cursos inscritos",
+        "body": "Explora el catálogo y elige tu primer curso para empezar.",
+        "cta": "Ver catálogo"
+      }
+    },
+    "library": {
+      "title": "Mi biblioteca",
+      "subtitle": "Tus libros digitales y compras",
+      "download": "Descargar",
+      "downloads": "{n} descargas",
+      "downloaded": "Descargado {count} veces",
+      "purchasedAt": "Comprado el {date}",
+      "browseBooks": "Ver libros",
+      "emptyTitle": "Tu biblioteca está vacía",
+      "emptySubtitle": "Compra un libro digital para verlo aquí.",
+      "empty": {
+        "title": "Tu biblioteca está vacía",
+        "body": "Compra un libro digital para verlo aquí.",
+        "cta": "Ver tienda"
+      }
+    },
+    "certificates": {
+      "title": "Mis certificados",
+      "subtitle": "Logros que puedes compartir",
+      "issuedOn": "Emitido el {date}",
+      "credential": "ID de credencial",
+      "download": "Descargar",
+      "share": "Compartir",
+      "viewCourse": "Ver curso",
+      "browseCourses": "Ver cursos",
+      "emptyTitle": "Aún no tienes certificados",
+      "emptySubtitle": "Completa un curso para recibir tu primer certificado.",
+      "downloadPdf": "Descargar PDF",
+      "shareLinkedin": "Compartir en LinkedIn",
+      "verify": "Verificar",
+      "empty": {
+        "title": "Aún no tienes certificados",
+        "body": "Completa un curso para recibir tu primer certificado.",
+        "cta": "Ver mis cursos"
+      }
+    },
+    "assistant": {
+      "title": "Plus · Asistente IA",
+      "subtitle": "Tu compañero de estudios disponible 24/7",
+      "comingSoon": "El asistente conversacional se conectará al modelo de IA cuando configures tu clave de OpenAI."
+    },
+    "settings": {
+      "title": "Configuración",
+      "subtitle": "Personaliza tu experiencia",
+      "tabs": {
+        "profile": "Perfil",
+        "account": "Cuenta",
+        "notifications": "Notificaciones",
+        "language": "Idioma",
+        "privacy": "Privacidad",
+        "billing": "Facturación"
+      },
+      "profile": {
+        "fullName": "Nombre completo",
+        "bio": "Biografía",
+        "phone": "Teléfono",
+        "save": "Guardar cambios",
+        "saved": "Cambios guardados",
+        "avatar": "Foto de perfil",
+        "uploadAvatar": "Cambiar foto"
+      },
+      "account": {
+        "email": "Correo electrónico",
+        "changePassword": "Cambiar contraseña",
+        "deleteAccount": "Eliminar cuenta",
+        "deleteWarning": "Esta acción es permanente y eliminará todos tus datos."
+      },
+      "notifications": {
+        "emailUpdates": "Actualizaciones por correo",
+        "emailUpdatesBody": "Novedades, lanzamientos y consejos.",
+        "smsReminders": "Recordatorios por SMS",
+        "smsRemindersBody": "Recibe avisos sobre tus cursos. Responde STOP para cancelar.",
+        "courseProgress": "Progreso de cursos",
+        "courseProgressBody": "Recordatorios cuando lleves días sin abrir un curso."
+      },
+      "language": {
+        "preferred": "Idioma preferido",
+        "preferredBody": "Idioma usado para emails y SMS."
+      },
+      "privacy": {
+        "publicProfile": "Perfil público",
+        "publicProfileBody": "Permite que otros estudiantes vean tu nombre.",
+        "marketingOptIn": "Comunicaciones de marketing",
+        "marketingOptInBody": "Recibe ofertas y novedades por correo."
+      },
+      "billing": {
+        "plan": "Plan actual",
+        "manage": "Gestionar suscripción",
+        "history": "Historial de pagos",
+        "noHistory": "Aún no tienes pagos registrados.",
+        "downloadInvoice": "Descargar factura"
+      }
+    },
+    "lesson": {
+      "tabs": {
+        "description": "Descripción",
+        "resources": "Recursos",
+        "questions": "Preguntas",
+        "notes": "Notas",
+        "transcript": "Transcripción"
+      },
+      "markComplete": "Marcar como completada",
+      "markedComplete": "Lección completada",
+      "previousLesson": "Lección anterior",
+      "nextLesson": "Siguiente lección",
+      "askPlus": "Pregúntale a Plus",
+      "yourNotes": "Tus notas",
+      "notesPlaceholder": "Escribe tus apuntes…",
+      "notesAutosaved": "Guardado automáticamente",
+      "transcriptUnavailable": "Transcripción aún no disponible para esta lección.",
+      "resourcesEmpty": "Esta lección no tiene recursos descargables."
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Bienvenido de vuelta",
+      "subtitle": "Ingresa con tu cuenta",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "remember": "Recuérdame",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión",
+      "google": "Continuar con Google",
+      "magicLink": "Enviar enlace mágico",
+      "noAccount": "¿No tienes cuenta?",
+      "createOne": "Crea una"
+    },
+    "signUp": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Empieza tu camino con Migración Plus",
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "terms": "Acepto los términos y la política de privacidad",
+      "marketing": "Quiero recibir novedades por correo",
+      "submit": "Crear cuenta",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "signIn": "Inicia sesión"
+    },
+    "recover": {
+      "title": "Recupera tu cuenta",
+      "subtitle": "Te enviaremos un enlace para restablecer tu contraseña",
+      "email": "Correo electrónico",
+      "submit": "Enviar enlace",
+      "back": "Volver al inicio de sesión",
+      "success": "Si el correo existe, recibirás un enlace en minutos."
+    },
+    "verify": {
+      "title": "Verifica tu correo",
+      "subtitle": "Te enviamos un enlace de verificación a tu correo.",
+      "resend": "Reenviar correo"
+    }
+  },
+  "legal": {
+    "draftBanner": "Pendiente de revisión legal del cliente.",
+    "terms": "Términos y condiciones",
+    "privacy": "Política de privacidad",
+    "policies": "Políticas",
+    "notice": "Aviso legal"
+  },
+  "errors": {
+    "required": "Este campo es obligatorio",
+    "email": "Ingresa un correo válido",
+    "minLength": "Mínimo {min} caracteres",
+    "passwordMatch": "Las contraseñas no coinciden",
+    "generic": "Algo salió mal. Inténtalo de nuevo.",
+    "notFound": "Página no encontrada",
+    "notFoundBody": "La página que buscas no existe o fue movida.",
+    "goHome": "Volver al inicio"
+  }
+}
