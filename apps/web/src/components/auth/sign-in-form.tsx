@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { Sparkles } from 'lucide-react';
+import { GraduationCap, ShieldCheck } from 'lucide-react';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 
@@ -18,8 +18,11 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const DEMO_EMAIL = process.env.NEXT_PUBLIC_DEMO_EMAIL ?? 'demo@migracionplus.academy';
 const DEMO_PASSWORD = process.env.NEXT_PUBLIC_DEMO_PASSWORD ?? 'Demo2026!';
+const DEMO_STUDENT_EMAIL =
+  process.env.NEXT_PUBLIC_DEMO_STUDENT_EMAIL ?? 'demo.student@migracionplus.academy';
+const DEMO_ADMIN_EMAIL =
+  process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL ?? 'demo.admin@migracionplus.academy';
 
 export function SignInForm() {
   const t = useTranslations('auth.signIn');
@@ -27,10 +30,11 @@ export function SignInForm() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
+  const [demoLoading, setDemoLoading] = useState<'student' | 'admin' | null>(null);
+
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
@@ -65,9 +69,30 @@ export function SignInForm() {
     }
   };
 
-  const fillDemo = () => {
-    setValue('email', DEMO_EMAIL, { shouldValidate: true, shouldDirty: true });
-    setValue('password', DEMO_PASSWORD, { shouldValidate: true, shouldDirty: true });
+  const signInDemo = async (kind: 'student' | 'admin') => {
+    if (demoLoading) return;
+    setError(null);
+    setDemoLoading(kind);
+    try {
+      const supabase = getSupabaseBrowserClient();
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: kind === 'admin' ? DEMO_ADMIN_EMAIL : DEMO_STUDENT_EMAIL,
+        password: DEMO_PASSWORD,
+      });
+      if (signInError) {
+        setError(
+          locale === 'es'
+            ? `No se pudo iniciar sesión como ${kind === 'admin' ? 'administrador' : 'estudiante'}. ¿Sembraste las cuentas de demo?`
+            : `Could not sign in as ${kind}. Did you seed the demo accounts?`,
+        );
+        return;
+      }
+      router.push(`/${locale}/dashboard`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Error');
+    } finally {
+      setDemoLoading(null);
+    }
   };
 
   return (
@@ -97,20 +122,46 @@ export function SignInForm() {
         </Button>
       </form>
 
-      {/* Demo autofill — fills the form with seeded demo credentials so reviewers
-          can sign in without creating an account. */}
-      <button
-        type="button"
-        onClick={fillDemo}
-        className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border border-dashed border-accent-400 bg-accent-50/60 px-4 py-2.5 text-sm font-medium text-accent-800 transition-colors hover:bg-accent-100 dark:border-accent-500/60 dark:bg-accent-900/20 dark:text-accent-300 dark:hover:bg-accent-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
-        aria-label={locale === 'es' ? 'Rellenar credenciales de demo' : 'Fill demo credentials'}
-      >
-        <Sparkles className="h-4 w-4" />
-        <span>{locale === 'es' ? 'Usar credenciales de demo' : 'Use demo credentials'}</span>
-        <Badge variant="accent" className="ml-1 text-[10px] uppercase">
-          Demo
-        </Badge>
-      </button>
+      {/* Demo sign-in — one-click into pre-seeded student or admin accounts.
+          Run `npx tsx packages/db/scripts/seed-demo-user.ts` to create them. */}
+      <div className="mt-4">
+        <p className="mb-2 flex items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-wider text-fg-muted">
+          <span>{locale === 'es' ? 'Acceso de demostración' : 'Demo access'}</span>
+          <Badge variant="accent" className="text-[10px] uppercase">
+            Demo
+          </Badge>
+        </p>
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={() => signInDemo('student')}
+            disabled={!!demoLoading || isSubmitting}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-dashed border-accent-400 bg-accent-50/60 px-3 py-2.5 text-sm font-medium text-accent-800 transition-colors hover:bg-accent-100 disabled:cursor-wait disabled:opacity-60 dark:border-accent-500/60 dark:bg-accent-900/20 dark:text-accent-300 dark:hover:bg-accent-900/40"
+            aria-label={locale === 'es' ? 'Iniciar sesión como estudiante de demo' : 'Sign in as demo student'}
+          >
+            <GraduationCap className="h-4 w-4" />
+            {demoLoading === 'student'
+              ? '…'
+              : locale === 'es'
+                ? 'Estudiante'
+                : 'Student'}
+          </button>
+          <button
+            type="button"
+            onClick={() => signInDemo('admin')}
+            disabled={!!demoLoading || isSubmitting}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-dashed border-brand-500 bg-brand-50/60 px-3 py-2.5 text-sm font-medium text-brand-800 transition-colors hover:bg-brand-100 disabled:cursor-wait disabled:opacity-60 dark:border-brand-400/60 dark:bg-brand-900/20 dark:text-brand-200 dark:hover:bg-brand-900/40"
+            aria-label={locale === 'es' ? 'Iniciar sesión como administrador de demo' : 'Sign in as demo admin'}
+          >
+            <ShieldCheck className="h-4 w-4" />
+            {demoLoading === 'admin'
+              ? '…'
+              : locale === 'es'
+                ? 'Administrador'
+                : 'Admin'}
+          </button>
+        </div>
+      </div>
 
       <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-wider text-fg-muted">
         <hr className="flex-1 border-[var(--border)]" />o<hr className="flex-1 border-[var(--border)]" />

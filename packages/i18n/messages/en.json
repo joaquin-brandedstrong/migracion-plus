@@ -239,6 +239,163 @@
       "assistant": "AI assistant",
       "settings": "Settings"
     },
+    "adminNav": {
+      "home": "Overview",
+      "courses": "Courses",
+      "library": "Books",
+      "students": "Students",
+      "leads": "Leads",
+      "content": "AI Content",
+      "reports": "Reports",
+      "certificates": "Certificates",
+      "settings": "Platform"
+    },
+    "roleBadge": {
+      "student": "Student",
+      "instructor": "Instructor",
+      "admin": "Admin"
+    },
+    "admin": {
+      "home": {
+        "greeting": "Admin overview",
+        "subtitle": "Executive snapshot of the platform",
+        "stats": {
+          "students": "Active students",
+          "enrollments": "Enrollments (30d)",
+          "revenue": "Revenue (30d)",
+          "pendingLeads": "Pending leads"
+        },
+        "recentEnrollments": "Recent enrollments",
+        "topCourses": "Most active courses",
+        "openLeads": "Open leads",
+        "viewAll": "View all"
+      },
+      "courses": {
+        "title": "Course management",
+        "subtitle": "Create, edit and publish catalog courses",
+        "newCourse": "New course",
+        "th": {
+          "title": "Course",
+          "students": "Students",
+          "rating": "Rating",
+          "status": "Status",
+          "updated": "Updated",
+          "actions": "Actions"
+        },
+        "status": {
+          "published": "Published",
+          "draft": "Draft",
+          "archived": "Archived"
+        },
+        "edit": "Edit",
+        "preview": "Preview"
+      },
+      "library": {
+        "title": "Book catalog",
+        "subtitle": "Manage physical, digital and Amazon-linked books",
+        "newBook": "New book",
+        "th": {
+          "title": "Book",
+          "format": "Format",
+          "price": "Price",
+          "amazon": "Amazon",
+          "actions": "Actions"
+        },
+        "linked": "Linked",
+        "missing": "Missing",
+        "edit": "Edit"
+      },
+      "students": {
+        "title": "Students",
+        "subtitle": "Enrollments, subscriptions and activity",
+        "search": "Search by name or email…",
+        "th": {
+          "name": "Name",
+          "email": "Email",
+          "enrollments": "Enrollments",
+          "lastActive": "Last active",
+          "plan": "Plan",
+          "actions": "Actions"
+        },
+        "view": "View",
+        "message": "Message"
+      },
+      "leads": {
+        "title": "Leads",
+        "subtitle": "Automated nurturing pipeline",
+        "newLead": "New lead",
+        "stages": {
+          "new": "New",
+          "contacted": "Contacted",
+          "qualified": "Qualified",
+          "enrolled": "Enrolled",
+          "lost": "Lost"
+        },
+        "automated": "Automated follow-up active"
+      },
+      "content": {
+        "title": "AI Content",
+        "subtitle": "Generate scripts, quizzes, summaries and translations",
+        "tools": {
+          "scripts": {
+            "title": "Video scripts",
+            "body": "Generate scripts from a lesson outline.",
+            "cta": "Create script"
+          },
+          "quizzes": {
+            "title": "Quizzes & questions",
+            "body": "Turn a transcript into a graded quiz.",
+            "cta": "Generate quiz"
+          },
+          "summaries": {
+            "title": "Summaries & notes",
+            "body": "Summarize a lesson or module into actionable bullets.",
+            "cta": "Summarize"
+          },
+          "translation": {
+            "title": "ES ↔ EN translation",
+            "body": "Translate content while preserving legal terminology.",
+            "cta": "Translate"
+          }
+        },
+        "comingSoon": "These tools will connect to OpenAI once you configure the key."
+      },
+      "reports": {
+        "title": "Reports",
+        "subtitle": "Key metrics and student behavior",
+        "cards": {
+          "engagement": "Engagement",
+          "completion": "Completion rates",
+          "revenue": "Revenue per course",
+          "funnel": "Conversion funnel"
+        },
+        "exportCsv": "Export CSV",
+        "comingSoon": "Charts will hook into your data source once it's ready."
+      },
+      "certificates": {
+        "title": "Issued certificates",
+        "subtitle": "Audit and revoke credentials",
+        "th": {
+          "credential": "Credential",
+          "student": "Student",
+          "course": "Course",
+          "issued": "Issued",
+          "actions": "Actions"
+        },
+        "revoke": "Revoke"
+      },
+      "settings": {
+        "title": "Platform",
+        "subtitle": "Configure store, assistant and automations",
+        "groups": {
+          "store": "Store",
+          "ai": "AI assistant",
+          "sms": "Twilio SMS",
+          "branding": "Branding",
+          "legal": "Legal"
+        }
+      }
+    },
     "home": {
       "greeting": "Hi, {name}",
       "subtitle": "Here's your learning progress",

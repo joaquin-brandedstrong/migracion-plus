@@ -239,6 +239,163 @@
       "assistant": "Asistente IA",
       "settings": "Configuración"
     },
+    "adminNav": {
+      "home": "Resumen",
+      "courses": "Cursos",
+      "library": "Libros",
+      "students": "Estudiantes",
+      "leads": "Leads",
+      "content": "Contenido IA",
+      "reports": "Reportes",
+      "certificates": "Certificados",
+      "settings": "Plataforma"
+    },
+    "roleBadge": {
+      "student": "Estudiante",
+      "instructor": "Instructor",
+      "admin": "Administrador"
+    },
+    "admin": {
+      "home": {
+        "greeting": "Panel de administración",
+        "subtitle": "Resumen ejecutivo de la plataforma",
+        "stats": {
+          "students": "Estudiantes activos",
+          "enrollments": "Inscripciones (30d)",
+          "revenue": "Ingresos (30d)",
+          "pendingLeads": "Leads pendientes"
+        },
+        "recentEnrollments": "Inscripciones recientes",
+        "topCourses": "Cursos con más actividad",
+        "openLeads": "Leads abiertos",
+        "viewAll": "Ver todo"
+      },
+      "courses": {
+        "title": "Gestión de cursos",
+        "subtitle": "Crea, edita y publica los cursos del catálogo",
+        "newCourse": "Nuevo curso",
+        "th": {
+          "title": "Curso",
+          "students": "Estudiantes",
+          "rating": "Valoración",
+          "status": "Estado",
+          "updated": "Actualizado",
+          "actions": "Acciones"
+        },
+        "status": {
+          "published": "Publicado",
+          "draft": "Borrador",
+          "archived": "Archivado"
+        },
+        "edit": "Editar",
+        "preview": "Vista previa"
+      },
+      "library": {
+        "title": "Catálogo de libros",
+        "subtitle": "Administra los libros físicos, digitales y links de Amazon",
+        "newBook": "Nuevo libro",
+        "th": {
+          "title": "Libro",
+          "format": "Formato",
+          "price": "Precio",
+          "amazon": "Amazon",
+          "actions": "Acciones"
+        },
+        "linked": "Vinculado",
+        "missing": "Faltante",
+        "edit": "Editar"
+      },
+      "students": {
+        "title": "Estudiantes",
+        "subtitle": "Inscritos, suscripciones y actividad",
+        "search": "Buscar por nombre o correo…",
+        "th": {
+          "name": "Nombre",
+          "email": "Correo",
+          "enrollments": "Inscripciones",
+          "lastActive": "Última actividad",
+          "plan": "Plan",
+          "actions": "Acciones"
+        },
+        "view": "Ver",
+        "message": "Mensaje"
+      },
+      "leads": {
+        "title": "Leads",
+        "subtitle": "Pipeline de seguimiento automatizado",
+        "newLead": "Nuevo lead",
+        "stages": {
+          "new": "Nuevos",
+          "contacted": "Contactados",
+          "qualified": "Calificados",
+          "enrolled": "Inscritos",
+          "lost": "Perdidos"
+        },
+        "automated": "Seguimiento automatizado activo"
+      },
+      "content": {
+        "title": "Contenido IA",
+        "subtitle": "Genera guiones, quizzes, resúmenes y traducciones",
+        "tools": {
+          "scripts": {
+            "title": "Guiones de video",
+            "body": "Genera guiones a partir de un esquema de lección.",
+            "cta": "Crear guion"
+          },
+          "quizzes": {
+            "title": "Quizzes y preguntas",
+            "body": "Convierte una transcripción en un cuestionario evaluable.",
+            "cta": "Generar quiz"
+          },
+          "summaries": {
+            "title": "Resúmenes y notas",
+            "body": "Resume una lección o módulo en bullets accionables.",
+            "cta": "Resumir"
+          },
+          "translation": {
+            "title": "Traducción ES ↔ EN",
+            "body": "Traduce contenido manteniendo la terminología legal.",
+            "cta": "Traducir"
+          }
+        },
+        "comingSoon": "Estas herramientas se conectarán a OpenAI cuando configures la clave."
+      },
+      "reports": {
+        "title": "Reportes",
+        "subtitle": "Métricas clave y comportamiento de estudiantes",
+        "cards": {
+          "engagement": "Engagement",
+          "completion": "Tasas de completitud",
+          "revenue": "Ingresos por curso",
+          "funnel": "Embudo de conversión"
+        },
+        "exportCsv": "Exportar CSV",
+        "comingSoon": "Los gráficos se conectarán a tu fuente de datos cuando esté lista."
+      },
+      "certificates": {
+        "title": "Certificados emitidos",
+        "subtitle": "Auditoría y revocación de credenciales",
+        "th": {
+          "credential": "Credencial",
+          "student": "Estudiante",
+          "course": "Curso",
+          "issued": "Emitido",
+          "actions": "Acciones"
+        },
+        "revoke": "Revocar"
+      },
+      "settings": {
+        "title": "Plataforma",
+        "subtitle": "Configura la tienda, el asistente y las automatizaciones",
+        "groups": {
+          "store": "Tienda",
+          "ai": "Asistente IA",
+          "sms": "SMS Twilio",
+          "branding": "Marca",
+          "legal": "Legal"
+        }
+      }
+    },
     "home": {
       "greeting": "Hola, {name}",
       "subtitle": "Aquí está tu progreso de aprendizaje",

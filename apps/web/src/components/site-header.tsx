@@ -45,7 +45,7 @@ export function SiteHeader() {
           className="flex items-center"
           aria-label="Migración Plus — Inicio"
         >
-          <Logo variant="primary" width={220} priority />
+          <Logo variant="primary" width={320} priority />
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">

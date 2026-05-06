@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { Button, GlassCard } from '@migracionplus/ui';
 import { Award, BookOpen, Download, Share2 } from 'lucide-react';
 import { demoCertificates } from '@/data/dashboard-seed';
+import { adminIssuedCertificates } from '@/data/admin-seed';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { getDashboardViewer, isAdminRole } from '@/lib/dashboard';
 
 export default async function DashboardCertificados({
   params,
@@ -12,10 +14,18 @@ export default async function DashboardCertificados({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'dashboard.certificates' });
   const lang = locale as 'es' | 'en';
 
-  // Try live certificates, fall back to demo
+  const viewer = await getDashboardViewer();
+  if (isAdminRole(viewer.role)) {
+    return <AdminCertificates locale={locale} lang={lang} />;
+  }
+  return <StudentCertificates locale={locale} lang={lang} />;
+}
+
+async function StudentCertificates({ locale, lang }: { locale: string; lang: 'es' | 'en' }) {
+  const t = await getTranslations({ locale, namespace: 'dashboard.certificates' });
+
   let certificates = demoCertificates;
   try {
     const supabase = await getSupabaseServerClient();
@@ -96,6 +106,56 @@ export default async function DashboardCertificados({
           </Button>
         </GlassCard>
       )}
+    </div>
+  );
+}
+
+async function AdminCertificates({ locale, lang }: { locale: string; lang: 'es' | 'en' }) {
+  const t = await getTranslations({ locale, namespace: 'dashboard.admin.certificates' });
+
+  return (
+    <div className="space-y-8">
+      <header>
+        <h1 className="font-display text-3xl font-semibold text-fg lg:text-4xl">
+          {t('title')}
+        </h1>
+        <p className="mt-1 text-fg-muted">{t('subtitle')}</p>
+      </header>
+
+      <GlassCard className="overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-[var(--bg-elevated)] text-left text-xs font-semibold uppercase tracking-wider text-fg-muted">
+              <tr>
+                <th className="px-5 py-3">{t('th.credential')}</th>
+                <th className="px-5 py-3">{t('th.student')}</th>
+                <th className="px-5 py-3">{t('th.course')}</th>
+                <th className="px-5 py-3">{t('th.issued')}</th>
+                <th className="px-5 py-3 text-right">{t('th.actions')}</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--border)]">
+              {adminIssuedCertificates.map((c) => (
+                <tr key={c.credentialId}>
+                  <td className="px-5 py-3 font-mono text-xs text-fg">{c.credentialId}</td>
+                  <td className="px-5 py-3 font-medium text-fg">{c.studentName}</td>
+                  <td className="px-5 py-3 text-fg-muted">
+                    {lang === 'es' ? c.courseTitleEs : c.courseTitleEn}
+                  </td>
+                  <td className="px-5 py-3 text-fg-muted">
+                    {new Date(c.issuedAt).toLocaleDateString(lang)}
+                  </td>
+                  <td className="px-5 py-3 text-right">
+                    <Button variant="ghost" size="sm" className="text-red-600 dark:text-red-400">
+                      {t('revoke')}
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </GlassCard>
     </div>
   );
 }

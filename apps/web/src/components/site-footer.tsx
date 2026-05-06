@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href={`/${locale}`} className="inline-block" aria-label="Migración Plus — Inicio">
-              <Logo variant="footer" width={280} />
+              <Logo variant="footer" width={440} />
             </Link>
             <p className="mt-6 max-w-sm text-sm text-fg-muted">{t('tagline')}</p>
           </div>

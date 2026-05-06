@@ -1,13 +1,16 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Button, GlassCard } from '@migracionplus/ui';
+import { Button, GlassCard, Badge } from '@migracionplus/ui';
 import {
   Award,
   BookOpen,
   Clock,
+  DollarSign,
   Flame,
+  GraduationCap,
   Sparkles,
   TrendingUp,
+  Users,
 } from 'lucide-react';
 import {
   computeStats,
@@ -15,11 +18,18 @@ import {
   demoCertificates,
   demoEnrollments,
 } from '@/data/dashboard-seed';
+import {
+  adminKpis,
+  adminLeads,
+  adminCourseRows,
+  adminRecentEnrollments,
+} from '@/data/admin-seed';
 import { courses } from '@/data/seed';
 import { CourseCard } from '@/components/course-card';
 import { ContinueCard } from '@/components/dashboard/continue-card';
 import { ActivityRow } from '@/components/dashboard/activity-row';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { getDashboardViewer, isAdminRole } from '@/lib/dashboard';
+import { formatPrice } from '@/lib/utils';
 
 export default async function DashboardHome({
   params,
@@ -28,25 +38,26 @@ export default async function DashboardHome({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'dashboard.home' });
   const lang = locale as 'es' | 'en';
 
-  // Profile name for greeting (best-effort)
-  let firstName = lang === 'es' ? 'estudiante' : 'student';
-  try {
-    const supabase = await getSupabaseServerClient();
-    const { data: u } = await supabase.auth.getUser();
-    if (u.user) {
-      const { data: row } = await supabase
-        .from('profiles')
-        .select('full_name')
-        .eq('id', u.user.id)
-        .maybeSingle();
-      if (row?.full_name) firstName = row.full_name.split(' ')[0] ?? firstName;
-    }
-  } catch {
-    firstName = 'Demo';
+  const viewer = await getDashboardViewer();
+  if (isAdminRole(viewer.role)) {
+    return <AdminHome locale={locale} lang={lang} />;
   }
+  return <StudentHome locale={locale} lang={lang} fullName={viewer.fullName} />;
+}
+
+async function StudentHome({
+  locale,
+  lang,
+  fullName,
+}: {
+  locale: string;
+  lang: 'es' | 'en';
+  fullName: string;
+}) {
+  const t = await getTranslations({ locale, namespace: 'dashboard.home' });
+  const firstName = fullName.split(' ')[0] ?? (lang === 'es' ? 'estudiante' : 'student');
 
   const stats = computeStats(demoEnrollments, demoCertificates);
   const inProgress = demoEnrollments.filter((e) => e.progressPercent < 100);
@@ -146,6 +157,162 @@ export default async function DashboardHome({
           </GlassCard>
         </section>
       </div>
+    </div>
+  );
+}
+
+async function AdminHome({ locale, lang }: { locale: string; lang: 'es' | 'en' }) {
+  const t = await getTranslations({ locale, namespace: 'dashboard.admin.home' });
+  const tStages = await getTranslations({ locale, namespace: 'dashboard.admin.leads.stages' });
+  const tCourses = await getTranslations({ locale, namespace: 'dashboard.admin.courses' });
+
+  const topCourses = [...adminCourseRows].sort((a, b) => b.students - a.students).slice(0, 4);
+  const openLeads = adminLeads.filter((l) => l.status === 'new' || l.status === 'contacted');
+
+  return (
+    <div className="space-y-10">
+      <header>
+        <h1 className="font-display text-3xl font-semibold text-fg lg:text-4xl">
+          {t('greeting')}
+        </h1>
+        <p className="mt-1 text-fg-muted">{t('subtitle')}</p>
+      </header>
+
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          icon={Users}
+          label={t('stats.students')}
+          value={adminKpis.activeStudents.toLocaleString(lang)}
+          accent="brand"
+        />
+        <StatCard
+          icon={GraduationCap}
+          label={t('stats.enrollments')}
+          value={adminKpis.enrollmentsLast30d.toLocaleString(lang)}
+          accent="info"
+        />
+        <StatCard
+          icon={DollarSign}
+          label={t('stats.revenue')}
+          value={formatPrice(adminKpis.revenueLast30dCents, 'USD', lang)}
+          accent="success"
+        />
+        <StatCard
+          icon={Sparkles}
+          label={t('stats.pendingLeads')}
+          value={adminKpis.pendingLeads.toString()}
+          accent="accent"
+        />
+      </section>
+
+      <div className="grid gap-8 lg:grid-cols-[1.4fr,1fr]">
+        <section>
+          <div className="mb-5 flex items-center justify-between">
+            <h2 className="font-display text-xl font-semibold text-fg lg:text-2xl">
+              {t('topCourses')}
+            </h2>
+            <Button asChild variant="ghost" size="sm">
+              <Link href={`/${locale}/dashboard/cursos`}>{t('viewAll')}</Link>
+            </Button>
+          </div>
+          <GlassCard className="overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-[var(--bg-elevated)] text-left text-xs font-semibold uppercase tracking-wider text-fg-muted">
+                <tr>
+                  <th className="px-5 py-3">{tCourses('th.title')}</th>
+                  <th className="px-5 py-3">{tCourses('th.students')}</th>
+                  <th className="px-5 py-3">{tCourses('th.rating')}</th>
+                  <th className="px-5 py-3">{tCourses('th.status')}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--border)]">
+                {topCourses.map((c) => (
+                  <tr key={c.slug}>
+                    <td className="px-5 py-3 font-medium text-fg">
+                      {lang === 'es' ? c.titleEs : c.titleEn}
+                    </td>
+                    <td className="px-5 py-3 text-fg-muted">{c.students}</td>
+                    <td className="px-5 py-3 text-fg-muted">★ {c.rating.toFixed(1)}</td>
+                    <td className="px-5 py-3">
+                      <Badge variant={c.status === 'published' ? 'accent' : 'muted'}>
+                        {tCourses(`status.${c.status}`)}
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </GlassCard>
+        </section>
+
+        <section>
+          <div className="mb-5 flex items-center justify-between">
+            <h2 className="font-display text-xl font-semibold text-fg lg:text-2xl">
+              {t('openLeads')}
+            </h2>
+            <Button asChild variant="ghost" size="sm">
+              <Link href={`/${locale}/dashboard/leads`}>{t('viewAll')}</Link>
+            </Button>
+          </div>
+          <GlassCard className="p-2">
+            <ul className="divide-y divide-[var(--border)]">
+              {openLeads.map((lead) => (
+                <li key={lead.id} className="flex items-start gap-3 px-3 py-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-200">
+                    <span className="text-xs font-semibold">
+                      {lead.name
+                        .split(' ')
+                        .map((s) => s[0])
+                        .join('')
+                        .slice(0, 2)
+                        .toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-fg">{lead.name}</p>
+                    <p className="truncate text-xs text-fg-muted">
+                      {lead.topic} · {lead.email}
+                    </p>
+                  </div>
+                  <Badge variant="muted">{tStages(lead.status)}</Badge>
+                </li>
+              ))}
+              {openLeads.length === 0 ? (
+                <li className="px-3 py-6 text-center text-sm text-fg-muted">
+                  {lang === 'es' ? 'Sin leads abiertos' : 'No open leads'}
+                </li>
+              ) : null}
+            </ul>
+          </GlassCard>
+        </section>
+      </div>
+
+      <section>
+        <h2 className="mb-5 font-display text-xl font-semibold text-fg lg:text-2xl">
+          {t('recentEnrollments')}
+        </h2>
+        <GlassCard className="p-2">
+          <ul className="divide-y divide-[var(--border)]">
+            {adminRecentEnrollments.map((e) => (
+              <li key={`${e.studentName}-${e.enrolledAt}`} className="flex items-start gap-3 px-3 py-3">
+                <GraduationCap className="mt-0.5 h-4 w-4 text-brand-500" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-fg">
+                    {e.studentName}{' '}
+                    <span className="font-normal text-fg-muted">
+                      {lang === 'es' ? '· se inscribió en' : '· enrolled in'}
+                    </span>{' '}
+                    {lang === 'es' ? e.courseTitleEs : e.courseTitleEn}
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-fg-muted">
+                    {new Date(e.enrolledAt).toLocaleString(lang === 'es' ? 'es-US' : 'en-US')}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </GlassCard>
+      </section>
     </div>
   );
 }

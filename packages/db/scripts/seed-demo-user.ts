@@ -1,9 +1,13 @@
 /**
- * Create the demo student account that the "Use demo credentials" button
- * fills on /iniciar-sesion. Uses the Auth admin API only — does not require
- * the migracionplus schema to be exposed via PostgREST. The schema-level
- * trigger `on_auth_user_created_migracionplus` automatically populates the
- * profile row on insert into auth.users.
+ * Create the two demo accounts that the buttons on /iniciar-sesion sign into:
+ *
+ *   - demo.student@migracionplus.academy   (role: student)
+ *   - demo.admin@migracionplus.academy     (role: admin)
+ *
+ * Uses the Auth admin API to create the auth.users row; the schema-level
+ * trigger `on_auth_user_created_migracionplus` populates migracionplus.profiles
+ * with role='student' by default. After creation we promote the admin account
+ * via the service-role client (bypasses RLS).
  *
  * Run with: npx tsx packages/db/scripts/seed-demo-user.ts
  */
@@ -18,32 +22,82 @@ if (!url || !serviceKey) {
   process.exit(1);
 }
 
-const supabase = createClient(url, serviceKey, { auth: { persistSession: false } });
+const auth = createClient(url, serviceKey, { auth: { persistSession: false } });
+const dbAdmin = createClient(url, serviceKey, {
+  auth: { persistSession: false },
+  db: { schema: 'migracionplus' },
+});
 
-const email = process.env.SEED_DEMO_EMAIL ?? process.env.NEXT_PUBLIC_DEMO_EMAIL ?? 'demo@migracionplus.academy';
 const password =
   process.env.SEED_DEMO_PASSWORD ?? process.env.NEXT_PUBLIC_DEMO_PASSWORD ?? 'Demo2026!';
 
-const { data, error } = await supabase.auth.admin.createUser({
-  email,
-  password,
-  email_confirm: true,
-  user_metadata: { full_name: 'Demo Student', preferred_locale: 'es' },
-});
+const studentEmail =
+  process.env.SEED_DEMO_STUDENT_EMAIL ??
+  process.env.NEXT_PUBLIC_DEMO_STUDENT_EMAIL ??
+  'demo.student@migracionplus.academy';
+const adminEmail =
+  process.env.SEED_DEMO_ADMIN_EMAIL ??
+  process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL ??
+  'demo.admin@migracionplus.academy';
 
-if (error) {
-  if (error.message.includes('already registered') || error.message.includes('already been registered')) {
-    console.log(`✓ User ${email} already exists — leaving as is.`);
-    process.exit(0);
-  }
-  console.error('Failed:', error.message);
-  process.exit(1);
+interface SeedAccount {
+  email: string;
+  fullName: string;
+  role: 'student' | 'admin';
 }
 
-console.log(`✓ Demo user created: ${email}`);
-console.log(`  password: ${password}`);
-console.log(`  id:       ${data.user?.id}`);
+const accounts: SeedAccount[] = [
+  { email: studentEmail, fullName: 'Demo Student', role: 'student' },
+  { email: adminEmail, fullName: 'Demo Admin', role: 'admin' },
+];
+
+async function ensureUser(account: SeedAccount): Promise<string | null> {
+  const { data, error } = await auth.auth.admin.createUser({
+    email: account.email,
+    password,
+    email_confirm: true,
+    user_metadata: { full_name: account.fullName, preferred_locale: 'es' },
+  });
+
+  if (!error) {
+    console.log(`✓ Created ${account.email} (id: ${data.user?.id})`);
+    return data.user?.id ?? null;
+  }
+
+  if (
+    error.message.includes('already registered') ||
+    error.message.includes('already been registered')
+  ) {
+    console.log(`· ${account.email} already exists — looking up id`);
+    const { data: list, error: listErr } = await auth.auth.admin.listUsers();
+    if (listErr) {
+      console.error(`  failed to list users:`, listErr.message);
+      return null;
+    }
+    const existing = list.users.find((u) => u.email === account.email);
+    return existing?.id ?? null;
+  }
+
+  console.error(`✗ ${account.email} failed:`, error.message);
+  return null;
+}
+
+async function ensureRole(userId: string, role: 'student' | 'admin'): Promise<void> {
+  const { error } = await dbAdmin.from('profiles').update({ role }).eq('id', userId);
+  if (error) throw error;
+}
+
+for (const account of accounts) {
+  const id = await ensureUser(account);
+  if (!id) continue;
+  try {
+    await ensureRole(id, account.role);
+    console.log(`  → role set to ${account.role}`);
+  } catch (err) {
+    console.error(`  ✗ could not set role for ${account.email}:`, (err as Error).message);
+  }
+}
+
 console.log('');
-console.log('The on_auth_user_created_migracionplus trigger should have populated');
-console.log('migracionplus.profiles automatically. Verify in the SQL editor:');
-console.log(`  select id, full_name, role from migracionplus.profiles where id = '${data.user?.id}';`);
+console.log('Done. Sign in via the two demo buttons on /iniciar-sesion.');
+console.log(`  password: ${password}`);
