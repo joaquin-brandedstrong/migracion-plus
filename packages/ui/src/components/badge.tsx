@@ -3,13 +3,14 @@ import { type HTMLAttributes } from 'react';
 import { cn } from '../lib/utils';
 
 const badgeVariants = cva(
-  'inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors',
+  'inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-bold uppercase tracking-wide transition-colors',
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-300',
-        accent: 'border-transparent bg-accent-100 text-accent-800 dark:bg-accent-900/40 dark:text-accent-300',
-        success: 'border-transparent bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300',
+        default: 'border-transparent bg-brand-100 text-brand-900 dark:bg-brand-900/40 dark:text-brand-200',
+        // accent alias — Udemy "Bestseller"-style filled chip in brand teal.
+        accent: 'border-transparent bg-brand-200 text-brand-900 dark:bg-brand-800 dark:text-brand-100',
+        success: 'border-transparent bg-brand-200 text-brand-900 dark:bg-brand-800/60 dark:text-brand-100',
         outline: 'border-[var(--border)] text-fg',
         muted: 'border-transparent bg-ink-100 text-ink-700 dark:bg-ink-800 dark:text-ink-300',
       },

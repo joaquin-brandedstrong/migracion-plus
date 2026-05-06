@@ -4,10 +4,8 @@ import { Button, ThemeToggle, LanguageToggle } from '@migracionplus/ui';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname, useRouter } from '@/i18n/routing';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { Menu, Search, X } from 'lucide-react';
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
 import { Logo } from '@/components/logo';
 
 export function SiteHeader() {
@@ -16,45 +14,62 @@ export function SiteHeader() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 8));
 
   const nav = [
     { href: '/cursos', label: t('courses') },
     { href: '/libros', label: t('books') },
-    { href: '/sobre-nosotros', label: t('about') },
     { href: '/blog', label: t('blog') },
+    { href: '/sobre-nosotros', label: t('about') },
     { href: '/contacto', label: t('contact') },
   ];
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-40 transition-all duration-300',
-        scrolled
-          ? 'border-b border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-sm'
-          : 'border-b border-transparent bg-transparent',
-      )}
-    >
-      <div className="container flex h-20 items-center justify-between gap-4 lg:h-24">
-        <Link
-          href={`/${locale}`}
-          className="flex items-center"
-          aria-label="Migración Plus — Inicio"
-        >
-          <Logo variant="primary" width={320} priority />
+    <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-bg-elevated">
+      <div className="container flex h-16 items-center gap-4 lg:h-20">
+        <Link href={`/${locale}`} className="flex shrink-0 items-center" aria-label="Migración Plus — Inicio">
+          <Logo variant="primary" width={280} priority />
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {nav.map((item) => (
+            <li>
+              <Link
+                href={`/${locale}/cursos`}
+                className="px-3 py-2 text-sm font-bold text-brand-700 hover:underline dark:text-brand-300"
+              >
+                {locale === 'es' ? 'Categorías' : 'Categories'}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Search */}
+        <form
+          role="search"
+          className="relative hidden flex-1 lg:block"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-muted" />
+          <input
+            type="search"
+            placeholder={
+              locale === 'es'
+                ? 'Buscar cursos, temas, formularios…'
+                : 'Search courses, topics, forms…'
+            }
+            aria-label={tCommon('search')}
+            className="h-11 w-full rounded-full border border-[var(--border)] bg-bg pl-10 pr-4 text-sm text-fg placeholder:text-fg-muted focus-visible:border-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+          />
+        </form>
+
+        <nav aria-label="Secundaria" className="hidden lg:block">
+          <ul className="flex items-center gap-1">
+            {nav.slice(2).map((item) => (
               <li key={item.href}>
                 <Link
                   href={`/${locale}${item.href}`}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-ink-100/60 hover:text-fg dark:hover:bg-ink-800/60"
+                  className="px-3 py-2 text-sm font-medium text-fg hover:text-brand-700 dark:hover:text-brand-300"
                 >
                   {item.label}
                 </Link>
@@ -63,7 +78,7 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-1.5 lg:gap-2">
           <LanguageToggle
             currentLocale={locale}
             locales={[
@@ -74,7 +89,7 @@ export function SiteHeader() {
             className="hidden sm:inline-flex"
           />
           <ThemeToggle />
-          <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
+          <Button asChild variant="outline" size="sm" className="hidden lg:inline-flex">
             <Link href={`/${locale}/iniciar-sesion`}>{tCommon('signIn')}</Link>
           </Button>
           <Button asChild size="sm" className="hidden lg:inline-flex">
@@ -82,7 +97,7 @@ export function SiteHeader() {
           </Button>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-fg lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center text-fg lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={open}
@@ -92,42 +107,46 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-[var(--glass-border)] bg-[var(--bg-elevated)] lg:hidden"
-          >
-            <ul className="container flex flex-col gap-1 py-4">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={`/${locale}${item.href}`}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-lg px-4 py-3 text-base font-medium text-fg hover:bg-ink-100 dark:hover:bg-ink-800"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li className="mt-2 grid grid-cols-2 gap-2">
-                <Button asChild variant="ghost" size="md">
-                  <Link href={`/${locale}/iniciar-sesion`} onClick={() => setOpen(false)}>
-                    {tCommon('signIn')}
-                  </Link>
-                </Button>
-                <Button asChild size="md">
-                  <Link href={`/${locale}/registro`} onClick={() => setOpen(false)}>
-                    {tCommon('getStarted')}
-                  </Link>
-                </Button>
+      {open ? (
+        <div className="border-t border-[var(--border)] bg-bg-elevated lg:hidden">
+          <div className="container py-3">
+            <form role="search" onSubmit={(e) => e.preventDefault()} className="relative">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-muted" />
+              <input
+                type="search"
+                placeholder={locale === 'es' ? 'Buscar…' : 'Search…'}
+                aria-label={tCommon('search')}
+                className="h-11 w-full rounded-full border border-[var(--border)] bg-bg pl-10 pr-4 text-sm text-fg"
+              />
+            </form>
+          </div>
+          <ul className="container flex flex-col gap-1 pb-4">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={`/${locale}${item.href}`}
+                  onClick={() => setOpen(false)}
+                  className="block px-3 py-3 text-base font-medium text-fg hover:bg-brand-50 dark:hover:bg-brand-900/30"
+                >
+                  {item.label}
+                </Link>
               </li>
-            </ul>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+            ))}
+            <li className="mt-2 grid grid-cols-2 gap-2">
+              <Button asChild variant="outline" size="md">
+                <Link href={`/${locale}/iniciar-sesion`} onClick={() => setOpen(false)}>
+                  {tCommon('signIn')}
+                </Link>
+              </Button>
+              <Button asChild size="md">
+                <Link href={`/${locale}/registro`} onClick={() => setOpen(false)}>
+                  {tCommon('getStarted')}
+                </Link>
+              </Button>
+            </li>
+          </ul>
+        </div>
+      ) : null}
     </header>
   );
 }

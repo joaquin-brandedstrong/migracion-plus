@@ -4,9 +4,12 @@ import animate from 'tailwindcss-animate';
 
 /**
  * Shared Tailwind preset for migracionplus-academy.
- * Brand palette is the FALLBACK from the build prompt section 3.2.
- * If brand-assets/extracted-palette.json was generated, those values
- * supersede the ones below — keep both in sync via PALETTE_NOTES.md.
+ *
+ * Palette policy: brand teal (extracted from the logo "plus" accent #61D0BE)
+ * is the ONLY chromatic color in the system. The `accent.*` namespace is kept
+ * for legacy class names but resolves to teal shades — there is no second hue.
+ * Neutrals come from `ink.*`. Status colors (success/warning/danger/info) stay
+ * because they convey semantic meaning, not decoration.
  */
 const preset: Partial<Config> = {
   darkMode: ['class', '[data-theme="dark"]'],
@@ -24,9 +27,6 @@ const preset: Partial<Config> = {
     },
     extend: {
       colors: {
-        // Anchored on the extracted brand teal #61D0BE (logo "plus" accent).
-        // Lighter shades 50–300 keep the original turquoise; 400+ deepen into
-        // accessible teals for buttons and dark surfaces. See PALETTE_NOTES.md.
         brand: {
           50: '#F0FDFA',
           100: '#CCFBF1',
@@ -40,17 +40,20 @@ const preset: Partial<Config> = {
           900: '#134E4A',
           950: '#042F2E',
         },
+        // accent.* is an alias for brand.* — kept so legacy `accent-500` etc.
+        // continue to compile to teal. Do not introduce a second hue here.
         accent: {
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          200: '#FDE68A',
-          300: '#FCD34D',
-          400: '#FBBF24',
-          500: '#F59E0B',
-          600: '#D97706',
-          700: '#B45309',
-          800: '#92400E',
-          900: '#78350F',
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6',
+          600: '#0D9488',
+          700: '#0F766E',
+          800: '#115E59',
+          900: '#134E4A',
+          950: '#042F2E',
         },
         ink: {
           50: '#F8FAFC',
@@ -66,9 +69,9 @@ const preset: Partial<Config> = {
           950: '#020617',
         },
         success: '#10B981',
-        warning: '#F59E0B',
+        warning: '#0F766E',
         danger: '#EF4444',
-        info: '#3B82F6',
+        info: '#0D9488',
 
         // Semantic tokens — these reference CSS variables defined in globals.css
         // so they automatically swap in dark mode.
@@ -95,12 +98,16 @@ const preset: Partial<Config> = {
         'glass-lg': '0 16px 48px 0 rgba(15, 23, 42, 0.12)',
         'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
         glow: '0 0 24px rgba(15, 118, 110, 0.35)',
+        // Udemy-style flat hover lift for course cards.
+        card: '0 2px 4px 0 rgba(15, 23, 42, 0.06), 0 1px 2px 0 rgba(15, 23, 42, 0.04)',
+        'card-hover': '0 12px 28px -4px rgba(15, 23, 42, 0.18), 0 4px 8px -2px rgba(15, 23, 42, 0.08)',
       },
       backgroundImage: {
+        // Teal-only mesh — three radial blobs of brand teal at varying intensity.
         'gradient-mesh':
-          'radial-gradient(at 20% 20%, hsla(170, 70%, 65%, 0.4) 0px, transparent 50%), radial-gradient(at 80% 30%, hsla(40, 100%, 70%, 0.35) 0px, transparent 50%), radial-gradient(at 50% 80%, hsla(190, 70%, 55%, 0.3) 0px, transparent 50%)',
+          'radial-gradient(at 20% 20%, hsla(170, 70%, 65%, 0.35) 0px, transparent 50%), radial-gradient(at 80% 30%, hsla(174, 72%, 56%, 0.28) 0px, transparent 50%), radial-gradient(at 50% 80%, hsla(176, 65%, 41%, 0.32) 0px, transparent 50%)',
         'gradient-mesh-dark':
-          'radial-gradient(at 20% 20%, hsla(170, 60%, 30%, 0.5) 0px, transparent 50%), radial-gradient(at 80% 30%, hsla(40, 70%, 40%, 0.3) 0px, transparent 50%), radial-gradient(at 50% 80%, hsla(190, 60%, 25%, 0.45) 0px, transparent 50%)',
+          'radial-gradient(at 20% 20%, hsla(170, 60%, 30%, 0.55) 0px, transparent 50%), radial-gradient(at 80% 30%, hsla(174, 70%, 25%, 0.45) 0px, transparent 50%), radial-gradient(at 50% 80%, hsla(176, 65%, 22%, 0.5) 0px, transparent 50%)',
       },
       animation: {
         'gradient-rotate': 'gradient-rotate 20s linear infinite',

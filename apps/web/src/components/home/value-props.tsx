@@ -1,16 +1,8 @@
-'use client';
-
-import { GlassCard } from '@migracionplus/ui';
-import { motion, useInView } from 'framer-motion';
 import { Briefcase, ShieldCheck, GraduationCap, HandshakeIcon } from 'lucide-react';
-import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { fadeInUp, stagger } from '@migracionplus/ui/motion';
 
 export function ValueProps() {
   const t = useTranslations('home.valueProps');
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
 
   const items = [
     { icon: Briefcase, key: 'advisory' as const },
@@ -20,32 +12,25 @@ export function ValueProps() {
   ];
 
   return (
-    <section className="py-20 lg:py-32">
-      <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-display-md font-semibold text-fg">{t('title')}</h2>
-          <p className="mt-4 text-fg-muted">{t('subtitle')}</p>
+    <section className="relative overflow-hidden bg-bg-elevated py-16 lg:py-20">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-dots-teal" />
+      <div className="container relative">
+        <div className="max-w-2xl">
+          <h2 className="font-display text-2xl font-bold text-fg sm:text-3xl">{t('title')}</h2>
+          <p className="mt-2 text-sm text-fg-muted sm:text-base">{t('subtitle')}</p>
         </div>
 
-        <motion.div
-          ref={ref}
-          initial="initial"
-          animate={inView ? 'animate' : 'initial'}
-          variants={stagger(0.08)}
-          className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: Icon, key }) => (
-            <motion.div key={key} variants={fadeInUp}>
-              <GlassCard hoverable className="h-full p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 text-white shadow-glow">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-6 font-display text-xl font-semibold text-fg">{t(`${key}.title`)}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-fg-muted">{t(`${key}.body`)}</p>
-              </GlassCard>
-            </motion.div>
+            <div key={key} className="border-l-2 border-brand-700 pl-5 dark:border-brand-400">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-300">
+                <Icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-base font-bold text-fg">{t(`${key}.title`)}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{t(`${key}.body`)}</p>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

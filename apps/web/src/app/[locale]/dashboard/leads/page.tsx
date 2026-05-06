@@ -46,8 +46,8 @@ export default async function AdminLeadsPage({
         </Button>
       </header>
 
-      <GlassCard className="border-emerald-300/50 bg-emerald-50/50 p-4 dark:border-emerald-500/30 dark:bg-emerald-900/10">
-        <p className="flex items-center gap-2 text-sm text-emerald-900 dark:text-emerald-200">
+      <GlassCard className="border-brand-300/60 bg-brand-50/60 p-4 dark:border-brand-500/30 dark:bg-brand-900/20">
+        <p className="flex items-center gap-2 text-sm text-brand-900 dark:text-brand-200">
           <Sparkles className="h-4 w-4" />
           {t('automated')}
         </p>

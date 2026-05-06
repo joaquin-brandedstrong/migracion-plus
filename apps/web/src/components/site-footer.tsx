@@ -10,14 +10,14 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-24 border-t border-[var(--border)] bg-[var(--bg-elevated)]/60 backdrop-blur">
-      <div className="container py-16">
-        <div className="grid gap-12 lg:grid-cols-5">
+    <footer className="mt-20 bg-ink-900 text-white dark:bg-ink-950">
+      <div className="container py-14">
+        <div className="grid gap-10 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href={`/${locale}`} className="inline-block" aria-label="Migración Plus — Inicio">
-              <Logo variant="footer" width={440} />
+              <Logo variant="footer" width={420} />
             </Link>
-            <p className="mt-6 max-w-sm text-sm text-fg-muted">{t('tagline')}</p>
+            <p className="mt-5 max-w-sm text-sm text-white/70">{t('tagline')}</p>
           </div>
 
           <FooterColumn
@@ -51,9 +51,9 @@ export function SiteFooter() {
           />
         </div>
 
-        <div className="mt-12 border-t border-[var(--border)] pt-8">
-          <p className="text-xs leading-relaxed text-fg-muted">{tAbout('disclaimer')}</p>
-          <p className="mt-4 text-xs text-fg-muted">
+        <div className="mt-10 border-t border-white/15 pt-6">
+          <p className="text-xs leading-relaxed text-white/60">{tAbout('disclaimer')}</p>
+          <p className="mt-3 text-xs text-white/60">
             © {year} Migración Plus Academy. {t('rights')}.
           </p>
         </div>
@@ -73,13 +73,13 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-fg">{title}</h3>
+      <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-200">{title}</h3>
       <ul className="space-y-2">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={`/${locale}${link.href}`}
-              className="text-sm text-fg-muted transition-colors hover:text-fg"
+              className="text-sm text-white/80 transition-colors hover:text-brand-200"
             >
               {link.label}
             </Link>

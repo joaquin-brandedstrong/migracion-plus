@@ -56,19 +56,6 @@ export function SignInForm() {
     }
   };
 
-  const onGoogle = async () => {
-    setError(null);
-    try {
-      const supabase = getSupabaseBrowserClient();
-      await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: `${window.location.origin}/${locale}/dashboard` },
-      });
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Error');
-    }
-  };
-
   const signInDemo = async (kind: 'student' | 'admin') => {
     if (demoLoading) return;
     setError(null);
@@ -162,14 +149,6 @@ export function SignInForm() {
           </button>
         </div>
       </div>
-
-      <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-wider text-fg-muted">
-        <hr className="flex-1 border-[var(--border)]" />o<hr className="flex-1 border-[var(--border)]" />
-      </div>
-
-      <Button variant="secondary" size="lg" className="w-full" onClick={onGoogle}>
-        {t('google')}
-      </Button>
 
       <p className="mt-8 text-center text-sm text-fg-muted">
         {t('noAccount')}{' '}

@@ -155,7 +155,7 @@ async function AdminLibrary({ locale, lang }: { locale: string; lang: 'es' | 'en
                     </td>
                     <td className="px-5 py-3">
                       {b.hasAmazon ? (
-                        <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-1 text-brand-600 dark:text-brand-300">
                           <ExternalLink className="h-3.5 w-3.5" />
                           {t('linked')}
                         </span>

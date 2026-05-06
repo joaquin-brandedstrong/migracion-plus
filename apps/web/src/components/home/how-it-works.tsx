@@ -1,15 +1,7 @@
-'use client';
-
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { GlassCard } from '@migracionplus/ui';
-import { fadeInUp, stagger } from '@migracionplus/ui/motion';
 
 export function HowItWorks() {
   const t = useTranslations('home.howItWorks');
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
 
   const steps = [
     { num: '01', key: 'step1' as const },
@@ -18,37 +10,31 @@ export function HowItWorks() {
   ];
 
   return (
-    <section className="py-20 lg:py-32">
-      <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-display-md font-semibold text-fg">{t('title')}</h2>
-          <p className="mt-4 text-fg-muted">{t('subtitle')}</p>
+    <section className="relative overflow-hidden bg-bg py-16 lg:py-20">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-brand-200/40 blur-3xl dark:bg-brand-800/30"
+      />
+      <div className="container relative">
+        <div className="max-w-2xl">
+          <h2 className="font-display text-2xl font-bold text-fg sm:text-3xl">{t('title')}</h2>
+          <p className="mt-2 text-sm text-fg-muted sm:text-base">{t('subtitle')}</p>
         </div>
 
-        <motion.div
-          ref={ref}
-          initial="initial"
-          animate={inView ? 'animate' : 'initial'}
-          variants={stagger(0.1)}
-          className="relative mt-16 grid gap-6 lg:grid-cols-3"
-        >
-          {/* Connecting line */}
-          <div
-            aria-hidden
-            className="absolute left-1/2 top-12 hidden h-px w-full -translate-x-1/2 bg-gradient-to-r from-transparent via-brand-300 to-transparent lg:block dark:via-brand-700"
-          />
+        <ol className="mt-10 grid gap-6 lg:grid-cols-3">
           {steps.map(({ num, key }) => (
-            <motion.div key={num} variants={fadeInUp} className="relative">
-              <GlassCard hoverable className="h-full p-8 text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-700 to-brand-900 font-display text-2xl font-semibold text-white shadow-glow">
-                  {num}
-                </div>
-                <h3 className="mt-6 font-display text-xl font-semibold text-fg">{t(`${key}.title`)}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-fg-muted">{t(`${key}.body`)}</p>
-              </GlassCard>
-            </motion.div>
+            <li
+              key={num}
+              className="rounded-2xl border border-[var(--border)] bg-bg-elevated p-7"
+            >
+              <div className="font-display text-5xl font-bold text-brand-700 dark:text-brand-300">
+                {num}
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-fg">{t(`${key}.title`)}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{t(`${key}.body`)}</p>
+            </li>
           ))}
-        </motion.div>
+        </ol>
       </div>
     </section>
   );

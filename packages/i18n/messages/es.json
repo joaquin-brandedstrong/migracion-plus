@@ -263,7 +263,9 @@
           "students": "Estudiantes activos",
           "enrollments": "Inscripciones (30d)",
           "revenue": "Ingresos (30d)",
-          "pendingLeads": "Leads pendientes"
+          "pendingLeads": "Leads pendientes",
+          "avgRating": "Rating promedio",
+          "subscriptions": "Suscripciones activas"
         },
         "recentEnrollments": "Inscripciones recientes",
         "topCourses": "Cursos con más actividad",
@@ -403,7 +405,9 @@
         "inProgress": "Cursos en progreso",
         "completed": "Cursos completados",
         "hoursStudied": "Horas estudiadas",
-        "certificates": "Certificados"
+        "certificates": "Certificados",
+        "lessonsCompleted": "Lecciones completadas",
+        "library": "Libros en biblioteca"
       },
       "continueLearning": "Continúa aprendiendo",
       "continueResume": "Reanudar",

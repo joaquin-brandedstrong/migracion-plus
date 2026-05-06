@@ -42,8 +42,8 @@ async function StudentSettings({ locale, lang }: { locale: string; lang: 'es' | 
         <p className="mt-1 text-fg-muted">{t('subtitle')}</p>
       </header>
 
-      <GlassCard className="border-amber-300/50 bg-amber-50/50 p-5 dark:border-amber-500/30 dark:bg-amber-900/10">
-        <p className="flex items-start gap-2 text-sm text-amber-900 dark:text-amber-200">
+      <GlassCard className="border-brand-300/60 bg-brand-50/60 p-5 dark:border-brand-500/30 dark:bg-brand-900/20">
+        <p className="flex items-start gap-2 text-sm text-brand-900 dark:text-brand-200">
           <Shield className="mt-0.5 h-4 w-4 shrink-0" />
           <span>
             {lang === 'es'
@@ -156,8 +156,8 @@ async function AdminSettings({ locale, lang }: { locale: string; lang: 'es' | 'e
         <p className="mt-1 text-fg-muted">{t('subtitle')}</p>
       </header>
 
-      <GlassCard className="border-amber-300/50 bg-amber-50/50 p-5 dark:border-amber-500/30 dark:bg-amber-900/10">
-        <p className="flex items-start gap-2 text-sm text-amber-900 dark:text-amber-200">
+      <GlassCard className="border-brand-300/60 bg-brand-50/60 p-5 dark:border-brand-500/30 dark:bg-brand-900/20">
+        <p className="flex items-start gap-2 text-sm text-brand-900 dark:text-brand-200">
           <Shield className="mt-0.5 h-4 w-4 shrink-0" />
           <span>
             {lang === 'es'

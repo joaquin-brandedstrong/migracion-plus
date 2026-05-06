@@ -149,16 +149,81 @@ export const demoActivity: DemoActivity[] = [
   },
 ];
 
+/**
+ * Daily study minutes for the last 7 days (oldest → newest). Used by the
+ * weekly study chart widget. Index 6 = today, index 0 = 6 days ago.
+ */
+export const demoWeeklyMinutes: number[] = [22, 0, 45, 38, 12, 60, 28];
+
+/**
+ * Six-month history per student KPI (oldest → newest, last value = current).
+ * Drives the delta chip + sparkline rendered inside each StatCard.
+ */
+export const studentKpiHistory = {
+  inProgress: [3, 3, 4, 3, 2, 2],
+  completed: [0, 0, 0, 1, 1, 1],
+  hoursStudied: [4, 7, 10, 14, 16, 18],
+  certificates: [0, 0, 0, 1, 1, 1],
+  lessonsCompleted: [5, 12, 18, 24, 30, 33],
+  libraryBooks: [0, 1, 1, 2, 2, 2],
+} as const;
+
+/**
+ * Pre-computed streak / weekly goal numbers. In production these come from
+ * a Postgres view aggregating the lesson_progress table.
+ */
+export const demoStreak = {
+  currentDays: 12,
+  bestDays: 21,
+  /** Last 7 days flagged true if the student studied at all that day. */
+  last7: [true, false, true, true, true, true, true] as const,
+};
+
+export const demoWeeklyGoal = {
+  /** Target minutes per ISO week. */
+  targetMinutes: 300,
+  /** Sum of demoWeeklyMinutes; recomputed at module init for consistency. */
+  get currentMinutes() {
+    return demoWeeklyMinutes.reduce((a, b) => a + b, 0);
+  },
+};
+
+/**
+ * Suggestions the AI assistant would surface based on the student's
+ * current courses and gaps. Static for the demo viewer.
+ */
+export const demoPlusSuggestions = [
+  {
+    promptEs: '¿Qué documentos necesito para responder un RFE en mi I-130?',
+    promptEn: 'What documents do I need to respond to an RFE on my I-130?',
+  },
+  {
+    promptEs: 'Resúmeme el módulo de elegibilidad del N-400 en 5 puntos.',
+    promptEn: 'Summarize the N-400 eligibility module in 5 bullets.',
+  },
+  {
+    promptEs: 'Hazme 10 preguntas de práctica del examen de civismo.',
+    promptEn: 'Quiz me with 10 practice questions from the civics test.',
+  },
+];
+
 export interface DashboardStats {
   inProgress: number;
   completed: number;
   hoursStudied: number;
   certificates: number;
+  lessonsCompleted: number;
+  libraryBooks: number;
 }
 
-export function computeStats(enrollments: DemoEnrollment[], certs: DemoCertificate[]): DashboardStats {
+export function computeStats(
+  enrollments: DemoEnrollment[],
+  certs: DemoCertificate[],
+  books: DemoBookPurchase[] = demoBookPurchases,
+): DashboardStats {
   const inProgress = enrollments.filter((e) => e.progressPercent < 100).length;
   const completed = enrollments.filter((e) => e.progressPercent === 100).length;
+  const lessonsCompleted = enrollments.reduce((sum, e) => sum + e.completedLessons, 0);
   // Approximate: minutes of completed lessons converted to hours.
   const hoursStudied = Math.round(
     enrollments.reduce((sum, e) => {
@@ -166,7 +231,14 @@ export function computeStats(enrollments: DemoEnrollment[], certs: DemoCertifica
       return sum + (lessonAvg * e.completedLessons) / 60;
     }, 0),
   );
-  return { inProgress, completed, hoursStudied, certificates: certs.length };
+  return {
+    inProgress,
+    completed,
+    hoursStudied,
+    certificates: certs.length,
+    lessonsCompleted,
+    libraryBooks: books.length,
+  };
 }
 
 export interface LessonRef {

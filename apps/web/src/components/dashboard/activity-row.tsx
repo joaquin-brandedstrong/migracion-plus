@@ -10,10 +10,10 @@ const ICONS = {
 } as const;
 
 const COLORS = {
-  lesson_completed: 'text-emerald-500',
-  quiz_passed: 'text-accent-500',
-  certificate_issued: 'text-brand-600 dark:text-brand-300',
-  enrollment: 'text-blue-500',
+  lesson_completed: 'text-brand-500',
+  quiz_passed: 'text-brand-600 dark:text-brand-300',
+  certificate_issued: 'text-brand-700 dark:text-brand-200',
+  enrollment: 'text-brand-400',
 } as const;
 
 interface Props {

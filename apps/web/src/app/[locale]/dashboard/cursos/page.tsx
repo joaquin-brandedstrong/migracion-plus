@@ -76,7 +76,7 @@ async function StudentCourses({ locale, lang }: { locale: string; lang: 'es' | '
       {completed.length > 0 && (
         <section>
           <div className="mb-5 flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+            <CheckCircle2 className="h-5 w-5 text-brand-500" />
             <h2 className="font-display text-xl font-semibold text-fg">
               {t('completed')}
             </h2>

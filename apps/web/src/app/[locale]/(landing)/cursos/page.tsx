@@ -21,9 +21,5 @@ export default async function CoursesPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return (
-    <div className="container py-16 lg:py-20">
-      <CourseCatalog />
-    </div>
-  );
+  return <CourseCatalog />;
 }

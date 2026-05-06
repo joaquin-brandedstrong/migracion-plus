@@ -43,8 +43,8 @@ export default async function AdminReportsPage({
         </Button>
       </header>
 
-      <GlassCard className="border-amber-300/50 bg-amber-50/50 p-4 dark:border-amber-500/30 dark:bg-amber-900/10">
-        <p className="text-sm text-amber-900 dark:text-amber-200">{t('comingSoon')}</p>
+      <GlassCard className="border-brand-300/60 bg-brand-50/60 p-4 dark:border-brand-500/30 dark:bg-brand-900/20">
+        <p className="text-sm text-brand-900 dark:text-brand-200">{t('comingSoon')}</p>
       </GlassCard>
 
       <section className="grid gap-5 sm:grid-cols-2">

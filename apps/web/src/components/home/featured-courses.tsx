@@ -1,37 +1,54 @@
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
-import { Button } from '@migracionplus/ui';
-import { ArrowRight } from 'lucide-react';
 import { courses } from '@/data/seed';
-import { CourseCard } from '@/components/course-card';
+import { CourseCarousel } from '@/components/course-carousel';
 
 export function FeaturedCourses() {
   const t = useTranslations('home.featuredCourses');
   const tCommon = useTranslations('common');
-  const locale = useLocale();
+  const locale = useLocale() as 'es' | 'en';
 
-  const featured = courses.slice(0, 6);
+  // First rail: most popular overall.
+  const popular = [...courses].sort((a, b) => b.ratingCount - a.ratingCount);
+  // Second rail: top-rated.
+  const topRated = [...courses].sort((a, b) => b.rating - a.rating);
 
   return (
-    <section className="py-20 lg:py-28">
-      <div className="container">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+    <section className="relative overflow-hidden bg-bg py-16 lg:py-20">
+      <div aria-hidden className="absolute inset-0 bg-glow-teal" />
+      <div className="container relative">
+        <div className="flex items-end justify-between gap-6">
           <div>
-            <h2 className="font-display text-display-md font-semibold text-fg">{t('title')}</h2>
-            <p className="mt-2 text-fg-muted">{t('subtitle')}</p>
+            <h2 className="font-display text-2xl font-bold text-fg sm:text-3xl">{t('title')}</h2>
+            <p className="mt-1 text-sm text-fg-muted">{t('subtitle')}</p>
           </div>
-          <Button asChild variant="ghost">
-            <Link href={`/${locale}/cursos`}>
-              {tCommon('viewAll')}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+          <Link
+            href={`/${locale}/cursos`}
+            className="hidden text-sm font-semibold text-brand-700 hover:underline sm:inline-block dark:text-brand-300"
+          >
+            {tCommon('viewAll')} →
+          </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((course) => (
-            <CourseCard key={course.slug} course={course} />
-          ))}
+        <div className="mt-8">
+          <CourseCarousel courses={popular} />
+        </div>
+
+        <div className="mt-14 flex items-end justify-between gap-6">
+          <div>
+            <h2 className="font-display text-2xl font-bold text-fg sm:text-3xl">
+              {locale === 'es' ? 'Mejor valorados' : 'Top rated'}
+            </h2>
+            <p className="mt-1 text-sm text-fg-muted">
+              {locale === 'es'
+                ? 'Los cursos con las reseñas más altas de nuestros estudiantes.'
+                : 'Courses with the highest ratings from our students.'}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <CourseCarousel courses={topRated} />
         </div>
       </div>
     </section>

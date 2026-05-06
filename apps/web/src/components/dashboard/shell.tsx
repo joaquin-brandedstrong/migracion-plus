@@ -7,9 +7,9 @@ import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Award,
-  Bell,
   BookMarked,
   GraduationCap,
+  HelpCircle,
   Home,
   LayoutGrid,
   LineChart,
@@ -29,6 +29,8 @@ import { Logo } from '@/components/logo';
 import { cn } from '@/lib/utils';
 import { isAdminRole } from '@/lib/role';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { TutorialOverlay, launchTutorial } from '@/components/dashboard/tutorial-overlay';
+import { NotificationsDropdown } from '@/components/dashboard/notifications-dropdown';
 
 interface ShellProps {
   locale: string;
@@ -97,7 +99,10 @@ export function DashboardShell({ locale, profile, role, children }: ShellProps) 
     <div className="min-h-dvh bg-[var(--bg)]">
       <div className="flex">
         {/* Sidebar (desktop) */}
-        <aside className="sticky top-0 hidden h-dvh w-[268px] shrink-0 overflow-hidden border-r border-[var(--border)] bg-[var(--bg-elevated)] lg:block">
+        <aside
+          data-tour="sidebar"
+          className="sticky top-0 hidden h-dvh w-[304px] shrink-0 overflow-hidden border-r border-[var(--border)] bg-[var(--bg-elevated)] lg:block"
+        >
           <SidebarContent nav={nav} role={role} isActive={isActive} locale={locale} isAdmin={isAdmin} />
         </aside>
 
@@ -179,12 +184,15 @@ export function DashboardShell({ locale, profile, role, children }: ShellProps) 
              <div className="flex items-center gap-3 ml-auto">
                <button
                  type="button"
-                 aria-label="Notificaciones"
-                 className="relative inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 dark:hover:bg-ink-800"
+                 data-tour="help-button"
+                 onClick={launchTutorial}
+                 aria-label={locale === 'es' ? 'Tutorial' : 'Tutorial'}
+                 title={locale === 'es' ? 'Volver a ver el tutorial' : 'Replay the tutorial'}
+                 className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:bg-ink-100 hover:text-fg dark:hover:bg-ink-800"
                >
-                 <Bell className="h-5 w-5" />
-                 <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent-500" />
+                 <HelpCircle className="h-5 w-5" />
                </button>
+               <NotificationsDropdown role={role} locale={locale} />
                <ThemeToggle />
 
                <div className="flex items-center gap-3">
@@ -207,6 +215,10 @@ export function DashboardShell({ locale, profile, role, children }: ShellProps) 
 
           {/* Content */}
           <div className="px-4 py-8 lg:px-8 lg:py-10">{children}</div>
+
+          {/* First-use tutorial — auto-opens once per session, re-launchable
+              from the topbar help button. */}
+          <TutorialOverlay role={role} locale={locale} />
         </div>
       </div>
     </div>
@@ -237,7 +249,7 @@ function SidebarContent({
         className="-mx-4 mb-2 flex items-center py-2"
         aria-label="Migración Plus — Inicio"
       >
-        <Logo variant="primary" width={364} />
+        <Logo variant="primary" width={320} />
       </Link>
       <div className="-mx-4 mb-4 flex items-center gap-2 px-4 pb-2">
         <Badge variant={isAdmin ? 'accent' : 'muted'}>

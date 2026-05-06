@@ -263,7 +263,9 @@
           "students": "Active students",
           "enrollments": "Enrollments (30d)",
           "revenue": "Revenue (30d)",
-          "pendingLeads": "Pending leads"
+          "pendingLeads": "Pending leads",
+          "avgRating": "Average rating",
+          "subscriptions": "Active subscriptions"
         },
         "recentEnrollments": "Recent enrollments",
         "topCourses": "Most active courses",
@@ -403,7 +405,9 @@
         "inProgress": "Courses in progress",
         "completed": "Courses completed",
         "hoursStudied": "Hours studied",
-        "certificates": "Certificates"
+        "certificates": "Certificates",
+        "lessonsCompleted": "Lessons completed",
+        "library": "Books in library"
       },
       "continueLearning": "Continue learning",
       "continueResume": "Resume",

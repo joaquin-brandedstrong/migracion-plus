@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/hero';
 import { TrustStrip } from '@/components/home/trust-strip';
+import { Programs } from '@/components/home/programs';
 import { ValueProps } from '@/components/home/value-props';
 import { FeaturedCourses } from '@/components/home/featured-courses';
 import { HowItWorks } from '@/components/home/how-it-works';
@@ -27,8 +28,9 @@ export default async function HomePage({ params }: Props) {
     <>
       <Hero />
       <TrustStrip />
-      <ValueProps />
+      <Programs />
       <FeaturedCourses />
+      <ValueProps />
       <HowItWorks />
       <BooksSpotlight />
       <Testimonials />
