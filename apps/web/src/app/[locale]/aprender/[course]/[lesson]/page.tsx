@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { courses } from '@/data/seed';
 import { lessonRegistry, slugify } from '@/data/dashboard-seed';
+import { LessonTabs } from '@/components/lesson/lesson-tabs';
 
 interface Props {
   params: Promise<{ locale: string; course: string; lesson: string }>;
@@ -27,7 +28,14 @@ export default async function LessonPage({ params }: Props) {
   const course = courses.find((c) => c.slug === courseSlug);
   if (!course) notFound();
 
-  const ref = lessonRegistry[`${course.slug}/${lessonSlug}`];
+  // Resolve the lesson. If the slug doesn't match a real lesson (e.g. a stale
+  // "resume" link), fall back to the course's first lesson instead of a hard
+  // 404 — a missing deep-link should never dead-end the learner.
+  let ref = lessonRegistry[`${course.slug}/${lessonSlug}`];
+  if (!ref) {
+    const firstSlug = slugify(course.modules[0]?.lessons[0]?.title.es ?? '');
+    ref = lessonRegistry[`${course.slug}/${firstSlug}`];
+  }
   if (!ref) notFound();
 
   const currentModule = course.modules[ref.moduleIndex];
@@ -110,38 +118,85 @@ export default async function LessonPage({ params }: Props) {
             </p>
           </div>
 
-          {/* Tabs (static, no JS) */}
-          <div className="mt-8 border-b border-[var(--border)]">
-            <nav className="-mb-px flex gap-6 overflow-x-auto" aria-label="Tabs">
-              {([
-                ['description', true],
-                ['resources', false],
-                ['questions', false],
-                ['notes', false],
-                ['transcript', false],
-              ] as const).map(([key, active]) => (
-                <span
-                  key={key}
-                  className={
-                    active
-                      ? 'whitespace-nowrap border-b-2 border-brand-600 px-1 py-3 text-sm font-medium text-fg'
-                      : 'whitespace-nowrap border-b-2 border-transparent px-1 py-3 text-sm font-medium text-fg-muted'
-                  }
-                >
-                  {t(`tabs.${key}`)}
-                </span>
-              ))}
-            </nav>
-          </div>
-
-          <article className="prose prose-sm mt-6 max-w-none text-fg-muted dark:prose-invert">
-            <p>
-              {lang === 'es'
-                ? `En esta lección revisamos "${currentLesson.title.es}" como parte del módulo "${currentModule.title.es}". El reproductor con video, recursos, preguntas y notas se completará en una próxima iteración.`
-                : `In this lesson we cover "${currentLesson.title.en}" as part of the "${currentModule.title.en}" module. The video player with resources, Q&A, and notes will be completed in a future iteration.`}
-            </p>
-            <p className="text-xs italic">{t('transcriptUnavailable')}</p>
-          </article>
+          <LessonTabs
+            lang={lang}
+            description={
+              lang === 'es'
+                ? `Esta lección, "${currentLesson.title.es}", forma parte del módulo "${currentModule.title.es}" del curso "${course.title.es}". Repasamos los puntos clave de forma clara y práctica, con ejemplos reales y los errores más comunes que conviene evitar.`
+                : `This lesson, "${currentLesson.title.en}", is part of the "${currentModule.title.en}" module in the "${course.title.en}" course. We cover the key points clearly and practically, with real examples and the most common mistakes to avoid.`
+            }
+            objectivesTitle={
+              lang === 'es' ? 'Objetivos de aprendizaje' : 'Learning objectives'
+            }
+            objectives={
+              lang === 'es'
+                ? [
+                    'Comprender los conceptos clave que cubre esta lección.',
+                    'Identificar los errores más comunes y cómo evitarlos.',
+                    'Saber qué documentos o pasos siguen a continuación.',
+                  ]
+                : [
+                    'Understand the key concepts this lesson covers.',
+                    'Identify the most common mistakes and how to avoid them.',
+                    'Know which documents or steps come next.',
+                  ]
+            }
+            resources={
+              lang === 'es'
+                ? [
+                    {
+                      label: 'Centro de Recursos de Ciudadanía (USCIS)',
+                      href: 'https://www.uscis.gov/es/ciudadania',
+                    },
+                    {
+                      label: 'Formulario N-400 e instrucciones (USCIS)',
+                      href: 'https://www.uscis.gov/n-400',
+                    },
+                    {
+                      label: 'Materiales de estudio del examen de civismo (USCIS)',
+                      href: 'https://www.uscis.gov/citizenship/find-study-materials-and-resources',
+                    },
+                  ]
+                : [
+                    {
+                      label: 'USCIS Citizenship Resource Center',
+                      href: 'https://www.uscis.gov/citizenship',
+                    },
+                    {
+                      label: 'Form N-400 and instructions (USCIS)',
+                      href: 'https://www.uscis.gov/n-400',
+                    },
+                    {
+                      label: 'Civics test study materials (USCIS)',
+                      href: 'https://www.uscis.gov/citizenship/find-study-materials-and-resources',
+                    },
+                  ]
+            }
+            qa={
+              lang === 'es'
+                ? [
+                    {
+                      q: '¿Tengo que ver las lecciones en orden?',
+                      a: 'Te recomendamos seguir el orden de los módulos, pero puedes repasar cualquier lección cuando quieras desde el panel lateral.',
+                    },
+                    {
+                      q: '¿Este curso reemplaza la asesoría de un abogado?',
+                      a: 'No. Es contenido educativo para ayudarte a entender y preparar tu proceso; no constituye asesoría legal.',
+                    },
+                  ]
+                : [
+                    {
+                      q: 'Do I have to watch the lessons in order?',
+                      a: 'We recommend following the module order, but you can revisit any lesson anytime from the side panel.',
+                    },
+                    {
+                      q: 'Does this course replace advice from an attorney?',
+                      a: 'No. It is educational content to help you understand and prepare your process; it is not legal advice.',
+                    },
+                  ]
+            }
+            assistantHref={`/${locale}/dashboard/asistente`}
+          />
 
           {/* Prev / next */}
           <div className="mt-10 flex items-center justify-between gap-3">

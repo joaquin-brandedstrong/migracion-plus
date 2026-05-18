@@ -71,10 +71,10 @@ export const demoEnrollments: DemoEnrollment[] = [
     progressPercent: 32,
     completedLessons: 6,
     totalLessons: 20,
-    resumeLessonSlug: 'documentos-que-necesitas',
+    resumeLessonSlug: 'tu-green-card-e-identificacion',
     resumeLessonTitle: {
-      es: 'Documentos que necesitas',
-      en: 'Documents you need',
+      es: 'Tu Green Card e identificación',
+      en: 'Your Green Card and identification',
     },
     resumeTimestamp: 220,
   },
