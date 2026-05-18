@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { GraduationCap, ShieldCheck } from 'lucide-react';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { DEMO_ROLE_COOKIE } from '@/lib/demo-session';
 import { useRouter } from 'next/navigation';
 
 const schema = z.object({
@@ -17,12 +18,6 @@ const schema = z.object({
 });
 
 type FormValues = z.infer<typeof schema>;
-
-const DEMO_PASSWORD = process.env.NEXT_PUBLIC_DEMO_PASSWORD ?? 'Demo2026!';
-const DEMO_STUDENT_EMAIL =
-  process.env.NEXT_PUBLIC_DEMO_STUDENT_EMAIL ?? 'demo.student@migracionplus.academy';
-const DEMO_ADMIN_EMAIL =
-  process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL ?? 'demo.admin@migracionplus.academy';
 
 export function SignInForm() {
   const t = useTranslations('auth.signIn');
@@ -56,30 +51,16 @@ export function SignInForm() {
     }
   };
 
-  const signInDemo = async (kind: 'student' | 'admin') => {
+  // Demo sign-in runs entirely on mock data — no Supabase, no DB required.
+  // It sets a cookie the auth-gate middleware and getDashboardViewer() both
+  // honor, then routes into the dashboard. A real sb-* session still takes
+  // precedence once the database is wired.
+  const signInDemo = (kind: 'student' | 'admin') => {
     if (demoLoading) return;
     setError(null);
     setDemoLoading(kind);
-    try {
-      const supabase = getSupabaseBrowserClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: kind === 'admin' ? DEMO_ADMIN_EMAIL : DEMO_STUDENT_EMAIL,
-        password: DEMO_PASSWORD,
-      });
-      if (signInError) {
-        setError(
-          locale === 'es'
-            ? `No se pudo iniciar sesión como ${kind === 'admin' ? 'administrador' : 'estudiante'}. ¿Sembraste las cuentas de demo?`
-            : `Could not sign in as ${kind}. Did you seed the demo accounts?`,
-        );
-        return;
-      }
-      router.push(`/${locale}/dashboard`);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Error');
-    } finally {
-      setDemoLoading(null);
-    }
+    document.cookie = `${DEMO_ROLE_COOKIE}=${kind}; path=/; max-age=86400; samesite=lax`;
+    router.push(`/${locale}/dashboard`);
   };
 
   return (

@@ -177,49 +177,116 @@ export const courses: CourseSeed[] = [
   {
     slug: 'naturalizacion-n-400',
     category: ciudadania,
-    title: { es: 'Naturalización N-400', en: 'Naturalization N-400' },
+    title: {
+      es: 'Guía completa de naturalización en EE. UU.',
+      en: 'Complete U.S. naturalization guide',
+    },
     subtitle: {
-      es: 'De residente a ciudadano: prepárate para la entrevista y el examen cívico.',
-      en: 'From resident to citizen: prepare for the interview and civics test.',
+      es: 'De residente a ciudadano: el proceso paso a paso, basado en USCIS.',
+      en: 'From resident to citizen: the step-by-step process, based on USCIS.',
     },
     description: {
-      es: 'Aprende a llenar el formulario N-400, organiza tus documentos y practica las 100 preguntas del examen de civismo en español o inglés.',
-      en: 'Learn to fill out the N-400, organize your documents, and practice the 100 civics questions in Spanish or English.',
+      es: 'Una guía práctica y paso a paso del proceso de naturalización, basada en la información oficial de USCIS y las instrucciones del Formulario N-400. Aprende los requisitos, llena el N-400 sin errores comunes, organiza tu documentación y prepárate para los biométricos, la entrevista, el examen de civismo, la decisión y el juramento.',
+      en: 'A practical, step-by-step guide to the naturalization process, based on official USCIS information and the Form N-400 instructions. Learn the requirements, complete the N-400 without common mistakes, organize your documentation, and prepare for biometrics, the interview, the civics test, the decision, and the oath.',
     },
     thumbnail:
       'https://images.unsplash.com/photo-1494172961521-33799ddd43a5?auto=format&fit=crop&w=1200&q=80',
     level: 'beginner',
-    durationMinutes: 280,
-    lessonCount: 20,
+    durationMinutes: 286,
+    lessonCount: 22,
     language: ['es', 'en'],
     priceCents: 12900,
     badge: { es: 'Nuevo', en: 'New' },
     rating: 4.7,
     ratingCount: 145,
-    instructor: { name: 'Lic. Mauricio Pinilla', avatar: '/brand/instructor-2.svg' },
+    instructor: { name: 'Lic. Daniela Restrepo', avatar: '/brand/instructor-1.svg' },
     whatYouWillLearn: [
-      { es: 'Determinar si calificas para naturalización', en: 'Determine if you qualify for naturalization' },
-      { es: 'Llenar correctamente el N-400', en: 'Correctly fill out the N-400' },
-      { es: 'Practicar las 100 preguntas de civismo', en: 'Practice the 100 civics questions' },
-      { es: 'Hacer una entrevista simulada con feedback', en: 'Take a mock interview with feedback' },
+      { es: 'Saber si calificas para la naturalización', en: 'Know whether you qualify for naturalization' },
+      { es: 'Llenar el N-400 sin los errores más comunes', en: 'Complete the N-400 without the most common mistakes' },
+      { es: 'Reunir y organizar tu documentación de respaldo', en: 'Gather and organize your supporting documentation' },
+      { es: 'Prepararte para la entrevista y el examen de civismo', en: 'Prepare for the interview and the civics test' },
+      { es: 'Saber qué esperar en biométricos, decisión y juramento', en: 'Know what to expect at biometrics, decision, and oath' },
     ],
     requirements: [
-      { es: 'Ser residente permanente con tiempo suficiente.', en: 'Be a permanent resident with sufficient time.' },
+      { es: 'Ser residente permanente legal con tiempo de residencia suficiente.', en: 'Be a lawful permanent resident with enough residency time.' },
+      { es: 'No se necesitan conocimientos legales previos.', en: 'No prior legal knowledge required.' },
     ],
-    audience: [{ es: 'Residentes permanentes listos para la ciudadanía.', en: 'Permanent residents ready for citizenship.' }],
+    audience: [
+      { es: 'Público general interesado en la ciudadanía estadounidense.', en: 'General public interested in U.S. citizenship.' },
+      { es: 'Inmigrantes residentes en EE. UU. listos para naturalizar.', en: 'Immigrants living in the U.S. ready to naturalize.' },
+      { es: 'Hijos de inmigrantes que ayudan a su familia con el trámite.', en: 'Children of immigrants helping their family with the process.' },
+    ],
     modules: [
       {
-        title: { es: 'Preparación', en: 'Preparation' },
+        title: { es: '1. Introducción', en: '1. Introduction' },
         lessons: [
-          { title: { es: 'Requisitos para naturalizar', en: 'Naturalization requirements' }, duration: 14, preview: true },
-          { title: { es: 'Documentos que necesitas', en: 'Documents you need' }, duration: 16 },
+          { title: { es: '¿Qué es la naturalización?', en: 'What is naturalization?' }, duration: 12, preview: true },
+          { title: { es: 'Beneficios de la ciudadanía estadounidense', en: 'Benefits of U.S. citizenship' }, duration: 12 },
         ],
       },
       {
-        title: { es: 'El examen cívico', en: 'The civics test' },
+        title: { es: '2. Requisitos de elegibilidad', en: '2. Eligibility requirements' },
         lessons: [
-          { title: { es: 'Las 100 preguntas (parte 1 de 4)', en: 'The 100 questions (part 1 of 4)' }, duration: 22 },
-          { title: { es: 'Las 100 preguntas (parte 2 de 4)', en: 'The 100 questions (part 2 of 4)' }, duration: 22 },
+          { title: { es: 'Edad mínima y residencia permanente legal', en: 'Minimum age and lawful permanent residence' }, duration: 12 },
+          { title: { es: 'Residencia continua: 5 años o 3 por matrimonio', en: 'Continuous residence: 5 years or 3 by marriage' }, duration: 14 },
+          { title: { es: 'Presencia física y residencia en el estado o distrito', en: 'Physical presence and state or district residence' }, duration: 12 },
+          { title: { es: 'Buen carácter moral, inglés y civismo', en: 'Good moral character, English, and civics' }, duration: 14 },
+        ],
+      },
+      {
+        title: { es: '3. Formulario N-400', en: '3. Form N-400' },
+        lessons: [
+          { title: { es: 'Recorrido por el N-400, parte por parte', en: 'A walkthrough of the N-400, part by part' }, duration: 16 },
+          { title: { es: 'Información que debes reunir antes de empezar', en: 'Information to gather before you start' }, duration: 14 },
+          { title: { es: 'Errores comunes que retrasan tu caso', en: 'Common mistakes that delay your case' }, duration: 14 },
+        ],
+      },
+      {
+        title: { es: '4. Documentación', en: '4. Documentation' },
+        lessons: [
+          { title: { es: 'Tu Green Card e identificación', en: 'Your Green Card and identification' }, duration: 12 },
+          { title: { es: 'Evidencia de respaldo según tu situación', en: 'Supporting evidence for your situation' }, duration: 14 },
+        ],
+      },
+      {
+        title: { es: '5. Envío de la solicitud', en: '5. Submitting the application' },
+        lessons: [
+          { title: { es: 'Presentación en línea vs. por correo', en: 'Filing online vs. by mail' }, duration: 12 },
+          { title: { es: 'Tarifas, exención y reducción de tarifa', en: 'Fees, fee waiver, and fee reduction' }, duration: 14 },
+        ],
+      },
+      {
+        title: { es: '6. Datos biométricos', en: '6. Biometrics' },
+        lessons: [
+          { title: { es: 'La cita de biométricos: qué esperar', en: 'The biometrics appointment: what to expect' }, duration: 12 },
+        ],
+      },
+      {
+        title: { es: '7. La entrevista', en: '7. The interview' },
+        lessons: [
+          { title: { es: 'El componente de inglés de la entrevista', en: 'The English component of the interview' }, duration: 14 },
+          { title: { es: 'Qué preguntará el oficial sobre tu N-400', en: 'What the officer will ask about your N-400' }, duration: 14 },
+        ],
+      },
+      {
+        title: { es: '8. El examen de civismo', en: '8. The civics test' },
+        lessons: [
+          { title: { es: 'Formato del examen y cómo se aprueba', en: 'Test format and how you pass' }, duration: 12 },
+          { title: { es: 'Estrategias de estudio para las preguntas', en: 'Study strategies for the questions' }, duration: 14 },
+          { title: { es: 'Excepciones y adaptaciones (65/20, 50/20, discapacidad)', en: 'Exceptions and accommodations (65/20, 50/20, disability)' }, duration: 12 },
+        ],
+      },
+      {
+        title: { es: '9. La decisión', en: '9. The decision' },
+        lessons: [
+          { title: { es: 'Aprobado, continuado o denegado', en: 'Granted, continued, or denied' }, duration: 12 },
+          { title: { es: 'Qué hacer si te niegan (apelación N-336)', en: 'What to do if you are denied (N-336 appeal)' }, duration: 12 },
+        ],
+      },
+      {
+        title: { es: '10. El juramento', en: '10. The oath' },
+        lessons: [
+          { title: { es: 'La ceremonia del Juramento de Lealtad', en: 'The Oath of Allegiance ceremony' }, duration: 12 },
         ],
       },
     ],
@@ -245,7 +312,7 @@ export const courses: CourseSeed[] = [
     priceCents: 4900,
     rating: 4.9,
     ratingCount: 421,
-    instructor: { name: 'Lic. Mauricio Pinilla', avatar: '/brand/instructor-2.svg' },
+    instructor: { name: 'Lic. Daniela Restrepo', avatar: '/brand/instructor-1.svg' },
     whatYouWillLearn: [
       { es: 'Memorizar las respuestas oficiales', en: 'Memorize the official answers' },
       { es: 'Entender el contexto histórico de cada pregunta', en: 'Understand the historical context of each question' },

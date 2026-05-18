@@ -24,25 +24,48 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </h1>
 
         <div className="prose prose-lg dark:prose-invert mt-8">
+          <p>
+            {isEs
+              ? 'Migración Plus tiene un enfoque educativo e institucional más que legal: existe para brindar información clara, accesible y confiable a las personas inmigrantes, con un tono cercano, práctico y fácil de entender.'
+              : 'Migración Plus takes an educational and institutional approach rather than a legal one: it exists to give immigrants clear, accessible, and reliable information, in a warm, practical, and easy-to-understand tone.'}
+          </p>
+
           <h2>{t('mission')}</h2>
           <p>
             {isEs
-              ? 'Hacer que la información sobre los procesos migratorios sea clara, accesible y disponible en el idioma de cada familia. Creemos que entender el sistema es el primer paso para navegarlo con confianza.'
-              : 'Make information about immigration processes clear, accessible, and available in the language of each family. We believe that understanding the system is the first step to navigating it with confidence.'}
+              ? 'Proveer una plataforma confiable y de gran alcance donde los inmigrantes encuentren información clara, organizada y útil. Queremos que cualquier persona pueda navegar sus procesos migratorios sin confusión, reduciendo la desinformación.'
+              : 'Provide a reliable, far-reaching platform where immigrants find clear, organized, and useful information. We want anyone to navigate their immigration processes without confusion, reducing misinformation.'}
           </p>
 
           <h2>{t('vision')}</h2>
-          <p>
-            {isEs
-              ? 'Ser la primera plataforma educativa en español que combina cursos prácticos, libros de referencia y un asistente IA disponible 24/7 para acompañar a quien lo necesite.'
-              : 'Be the first Spanish-language educational platform that combines practical courses, reference books, and a 24/7 AI assistant for anyone who needs it.'}
-          </p>
+          <ul>
+            <li>
+              {isEs
+                ? 'Información centralizada en un solo lugar.'
+                : 'Centralized information in one place.'}
+            </li>
+            <li>
+              {isEs
+                ? 'Contenido basado en experiencia real.'
+                : 'Content based on real experience.'}
+            </li>
+            <li>
+              {isEs
+                ? 'Enfoque práctico y fácil de consumir.'
+                : 'A practical, easy-to-consume approach.'}
+            </li>
+            <li>
+              {isEs
+                ? 'Orientación para quienes no entienden el sistema legal.'
+                : 'Guidance for those who don’t understand the legal system.'}
+            </li>
+          </ul>
 
           <h2>{t('history')}</h2>
           <p>
             {isEs
-              ? 'Migración Plus comenzó como un consultorio de ayuda con formularios. Después de 15 años atendiendo a miles de familias, decidimos llevar todo ese conocimiento a una academia digital donde cualquiera puede aprender a su ritmo.'
-              : 'Migración Plus started as a forms-help office. After 15 years serving thousands of families, we decided to bring all that knowledge to a digital academy where anyone can learn at their own pace.'}
+              ? 'Migración Plus nace de la experiencia directa en procesos migratorios en Estados Unidos: conocimiento práctico construido trabajando con clientes reales. Su fundadora continúa formándose en el ámbito legal —actualmente estudia para ser admitida al colegio de abogados (Admitted to the Bar)— manteniendo siempre un enfoque educativo, no de asesoría legal.'
+              : 'Migración Plus is built on direct experience with U.S. immigration processes: practical knowledge gained working with real clients. Its founder continues her legal training —currently studying to be Admitted to the Bar— while always keeping an educational focus, not legal advice.'}
           </p>
         </div>
 

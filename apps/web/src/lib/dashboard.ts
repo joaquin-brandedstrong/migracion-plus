@@ -1,5 +1,7 @@
+import { cookies } from 'next/headers';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
 import type { ProfileRole } from '@migracionplus/db/types';
+import { DEMO_ROLE_COOKIE, isDemoRole } from './demo-session';
 
 export { isAdminRole } from './role';
 
@@ -17,12 +19,29 @@ const DEMO_VIEWER: DashboardViewer = {
   avatarUrl: null,
 };
 
+const DEMO_ADMIN_VIEWER: DashboardViewer = {
+  role: 'admin',
+  fullName: 'Demo Admin',
+  email: 'demo.admin@migracionplus.academy',
+  avatarUrl: null,
+};
+
 /**
  * Load the authenticated viewer's profile + role from `migracionplus.profiles`.
- * Falls back to a demo student viewer when there's no session or Supabase env
- * isn't configured — keeps the dashboard renderable in local dev.
+ *
+ * Order of precedence:
+ *  1. Demo cookie (set by the one-click demo buttons) — pure mock data, no
+ *     Supabase call. This is the path used while there's no DB wired.
+ *  2. Real Supabase session → profile row.
+ *  3. Demo student fallback when there's no session or Supabase env/DB.
  */
 export async function getDashboardViewer(): Promise<DashboardViewer> {
+  const cookieStore = await cookies();
+  const demoRole = cookieStore.get(DEMO_ROLE_COOKIE)?.value;
+  if (isDemoRole(demoRole)) {
+    return demoRole === 'admin' ? DEMO_ADMIN_VIEWER : DEMO_VIEWER;
+  }
+
   try {
     const supabase = await getSupabaseServerClient();
     const { data: userResult } = await supabase.auth.getUser();

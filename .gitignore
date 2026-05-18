@@ -39,3 +39,10 @@ supabase/.temp
 # IDE
 .vscode/settings.json
 .idea
+
+# Client source-document dumps (briefs, legal source docs, content PDFs).
+# Kept local only — not committed to the repo.
+MIGRACION PLUS-*/
+*.torrent
+# LibreOffice/OpenOffice lock files
+.~lock.*#

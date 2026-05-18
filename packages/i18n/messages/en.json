@@ -190,8 +190,8 @@
   "about": {
     "title": "About Migración Plus",
     "mission": "Our mission",
-    "vision": "Our vision",
-    "history": "Our history",
+    "vision": "What makes us different",
+    "history": "Our background",
     "team": "Our team",
     "disclaimer": "Migración Plus provides consulting and education services on completing immigration forms. We do not provide legal advice or representation in immigration court. Migración Plus is not a law firm and does not provide legal advice."
   },
@@ -546,7 +546,8 @@
       "notesPlaceholder": "Write your notes…",
       "notesAutosaved": "Autosaved",
       "transcriptUnavailable": "Transcript not yet available for this lesson.",
-      "resourcesEmpty": "This lesson has no downloadable resources."
+      "resourcesEmpty": "This lesson has no downloadable resources.",
+      "videoComingSoon": "The video for this lesson will be available very soon."
     }
   },
   "auth": {
@@ -591,11 +592,12 @@
     }
   },
   "legal": {
-    "draftBanner": "Pending client legal review.",
     "terms": "Terms and conditions",
     "privacy": "Privacy policy",
     "policies": "Policies",
-    "notice": "Legal notice"
+    "notice": "Legal notice",
+    "refund": "Refund policy",
+    "contentUse": "Content use & anti-piracy"
   },
   "errors": {
     "required": "This field is required",

@@ -29,6 +29,7 @@ import { Logo } from '@/components/logo';
 import { cn } from '@/lib/utils';
 import { isAdminRole } from '@/lib/role';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { DEMO_ROLE_COOKIE } from '@/lib/demo-session';
 import { TutorialOverlay, launchTutorial } from '@/components/dashboard/tutorial-overlay';
 import { NotificationsDropdown } from '@/components/dashboard/notifications-dropdown';
 
@@ -88,6 +89,9 @@ export function DashboardShell({ locale, profile, role, children }: ShellProps) 
 
   const onSignOut = async () => {
     try {
+      // Clear the demo cookie (mock-data session) ...
+      document.cookie = `${DEMO_ROLE_COOKIE}=; path=/; max-age=0; samesite=lax`;
+      // ... and end any real Supabase session if one exists.
       const supabase = getSupabaseBrowserClient();
       await supabase.auth.signOut();
     } finally {

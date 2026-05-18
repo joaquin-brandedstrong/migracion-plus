@@ -267,8 +267,9 @@ export const lessonRegistry: Record<string, LessonRef> = (() => {
           lessonIndex: li,
           slug,
           durationSeconds: les.duration * 60,
-          // Public domain "Big Buck Bunny" trailer as a placeholder.
-          videoEmbedUrl: 'https://www.youtube.com/embed/aqz-KE-bpKQ?rel=0&modestbranding=1',
+          // No placeholder video: lessons show a branded "video coming soon"
+          // poster until real course footage is produced and uploaded.
+          videoEmbedUrl: undefined,
         };
       });
     });

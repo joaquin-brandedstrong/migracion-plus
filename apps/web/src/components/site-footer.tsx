@@ -6,6 +6,7 @@ export function SiteFooter() {
   const t = useTranslations('home.footer');
   const tNav = useTranslations('nav');
   const tAbout = useTranslations('about');
+  const tLegal = useTranslations('legal');
   const locale = useLocale();
   const year = new Date().getFullYear();
 
@@ -42,10 +43,11 @@ export function SiteFooter() {
           <FooterColumn
             title={t('legal')}
             links={[
-              { href: '/terminos', label: 'Términos' },
-              { href: '/privacidad', label: 'Privacidad' },
-              { href: '/politicas', label: 'Políticas' },
-              { href: '/aviso-legal', label: 'Aviso legal' },
+              { href: '/terminos', label: tLegal('terms') },
+              { href: '/privacidad', label: tLegal('privacy') },
+              { href: '/reembolsos', label: tLegal('refund') },
+              { href: '/politicas', label: tLegal('policies') },
+              { href: '/aviso-legal', label: tLegal('notice') },
             ]}
             locale={locale}
           />

@@ -86,8 +86,11 @@ export default async function LessonPage({ params }: Props) {
                   className="absolute inset-0 h-full w-full"
                 />
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-white/80">
-                  <PlayCircle className="h-12 w-12" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-ink-950 to-brand-950 px-6 text-center">
+                  <PlayCircle className="h-12 w-12 text-white/70" />
+                  <p className="text-sm font-medium text-white/80">
+                    {t('videoComingSoon')}
+                  </p>
                 </div>
               )}
             </div>

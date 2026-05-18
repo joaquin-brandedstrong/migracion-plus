@@ -50,7 +50,7 @@ file tree or git history.
 - `apps/web/public/brand/logo-{light,dark}.svg` are simple wordmarks. Replace once `brand-assets/source/` is populated.
 - `apps/web/public/{favicon.ico,apple-touch-icon.png,brand/og-image.png}` are programmatically generated placeholders.
 - The "Best Seller", "Nuevo" badges and rating numbers in `apps/web/src/data/seed.ts` are demo data. They'll be sourced from real DB rows once Supabase is wired.
-- Legal pages (`/terminos`, `/privacidad`, `/politicas`, `/aviso-legal`) carry a "pending client legal review" banner deliberately. Don't fill in real legal copy — the client provides that.
+- Legal pages now carry the **client-provided** copy (delivered May 2026), populated bilingually: `/terminos`, `/privacidad`, `/aviso-legal`, `/reembolsos`, `/uso-de-contenido`, plus `/politicas` as a hub. The "pending client legal review" banner has been removed. Shared brand/email/date constants live in `apps/web/src/data/legal.ts`. Don't rewrite this legal copy — edit only if the client sends a new revision, and keep the `aviso-legal` lead sentence in sync with the canonical disclaimer (see Hard rules).
 
 ## What's NOT yet built
 
