@@ -1,11 +1,12 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { Button, GlassCard } from '@migracionplus/ui';
-import { Award, BookOpen, Download, Share2 } from 'lucide-react';
+import { Award, BookOpen } from 'lucide-react';
 import { demoCertificates } from '@/data/dashboard-seed';
 import { adminIssuedCertificates } from '@/data/admin-seed';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
 import { getDashboardViewer, isAdminRole } from '@/lib/dashboard';
+import { CertificateActions } from '@/components/dashboard/download-actions';
 
 export default async function DashboardCertificados({
   params,
@@ -20,10 +21,20 @@ export default async function DashboardCertificados({
   if (isAdminRole(viewer.role)) {
     return <AdminCertificates locale={locale} lang={lang} />;
   }
-  return <StudentCertificates locale={locale} lang={lang} />;
+  return (
+    <StudentCertificates locale={locale} lang={lang} studentName={viewer.fullName} />
+  );
 }
 
-async function StudentCertificates({ locale, lang }: { locale: string; lang: 'es' | 'en' }) {
+async function StudentCertificates({
+  locale,
+  lang,
+  studentName,
+}: {
+  locale: string;
+  lang: 'es' | 'en';
+  studentName: string;
+}) {
   const t = await getTranslations({ locale, namespace: 'dashboard.certificates' });
 
   let certificates = demoCertificates;
@@ -76,14 +87,22 @@ async function StudentCertificates({ locale, lang }: { locale: string; lang: 'es
                 </div>
               </div>
               <div className="mt-5 flex gap-2">
-                <Button size="sm">
-                  <Download className="h-4 w-4" />
-                  {t('download')}
-                </Button>
-                <Button variant="outline" size="sm">
-                  <Share2 className="h-4 w-4" />
-                  {t('share')}
-                </Button>
+                <CertificateActions
+                  studentName={studentName}
+                  courseTitle={cert.course.title[lang]}
+                  credentialId={cert.credentialId}
+                  issuedDate={t('issuedOn', {
+                    date: new Date(cert.issuedAt).toLocaleDateString(lang),
+                  })}
+                  certTitle={
+                    lang === 'es'
+                      ? 'Certificado de finalización'
+                      : 'Certificate of completion'
+                  }
+                  downloadLabel={t('download')}
+                  shareLabel={t('share')}
+                  copiedLabel={lang === 'es' ? 'Copiado' : 'Copied'}
+                />
                 <Button variant="ghost" size="sm" asChild>
                   <Link href={`/${locale}/dashboard/cursos`}>{t('viewCourse')}</Link>
                 </Button>

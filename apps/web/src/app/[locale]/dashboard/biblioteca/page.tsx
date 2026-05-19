@@ -2,7 +2,8 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Badge, Button, GlassCard } from '@migracionplus/ui';
-import { BookOpen, Download, Plus, ExternalLink } from 'lucide-react';
+import { BookOpen, Plus, ExternalLink } from 'lucide-react';
+import { BookDownloadButton } from '@/components/dashboard/download-actions';
 import { demoBookPurchases } from '@/data/dashboard-seed';
 import { adminBookRows } from '@/data/admin-seed';
 import { books } from '@/data/seed';
@@ -80,10 +81,11 @@ async function StudentLibrary({ locale, lang }: { locale: string; lang: 'es' | '
                   <span className="text-xs text-fg-muted">
                     {t('downloaded', { count: p.downloadCount })}
                   </span>
-                  <Button size="sm">
-                    <Download className="h-4 w-4" />
-                    {t('download')}
-                  </Button>
+                  <BookDownloadButton
+                    title={p.book.title[lang]}
+                    author={p.book.author}
+                    label={t('download')}
+                  />
                 </div>
               </div>
             </GlassCard>

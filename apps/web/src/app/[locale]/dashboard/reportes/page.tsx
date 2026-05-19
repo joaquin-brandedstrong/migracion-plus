@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Badge, Button, GlassCard } from '@migracionplus/ui';
-import { BarChart3, Download, LineChart, PieChart, TrendingUp } from 'lucide-react';
+import { Badge, GlassCard } from '@migracionplus/ui';
+import { BarChart3, LineChart, PieChart, TrendingUp } from 'lucide-react';
 import { getDashboardViewer, isAdminRole } from '@/lib/dashboard';
+import { ExportCsvButton } from '@/components/dashboard/download-actions';
 
 export default async function AdminReportsPage({
   params,
@@ -17,6 +18,16 @@ export default async function AdminReportsPage({
   if (!isAdminRole(viewer.role)) redirect(`/${locale}/dashboard`);
 
   const t = await getTranslations({ locale, namespace: 'dashboard.admin.reports' });
+
+  const reportRows: (string | number)[][] = [
+    lang === 'es'
+      ? ['Mes', 'Inscripciones', 'Ingresos (USD)', 'Certificados', 'Finalización']
+      : ['Month', 'Enrollments', 'Revenue (USD)', 'Certificates', 'Completion'],
+    ['2026-01', 128, 5320, 41, '38%'],
+    ['2026-02', 156, 6480, 53, '41%'],
+    ['2026-03', 203, 8210, 77, '44%'],
+    ['2026-04', 241, 9870, 96, '47%'],
+  ];
 
   const cards: {
     key: 'engagement' | 'completion' | 'revenue' | 'funnel';
@@ -37,10 +48,11 @@ export default async function AdminReportsPage({
           </h1>
           <p className="mt-1 text-fg-muted">{t('subtitle')}</p>
         </div>
-        <Button variant="outline">
-          <Download className="h-4 w-4" />
-          {t('exportCsv')}
-        </Button>
+        <ExportCsvButton
+          rows={reportRows}
+          fileName="reporte-migracion-plus.csv"
+          label={t('exportCsv')}
+        />
       </header>
 
       <GlassCard className="border-brand-300/60 bg-brand-50/60 p-4 dark:border-brand-500/30 dark:bg-brand-900/20">
